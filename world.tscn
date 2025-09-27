@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dd30axi4gohbt"]
+[gd_scene load_steps=6 format=3 uid="uid://dd30axi4gohbt"]
 
 [ext_resource type="PackedScene" uid="uid://db4cc18hdvu45" path="res://player.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://d3juvjra20lao" path="res://world.gd" id="1_tlwt5"]
 [ext_resource type="Script" uid="uid://csksa2hykfxdp" path="res://camera.gd" id="2_aqk2v"]
 [ext_resource type="PackedScene" uid="uid://bxtxj8wn0ivdn" path="res://walls.tscn" id="2_fj7yv"]
+[ext_resource type="PackedScene" uid="uid://ujivl2lh7elw" path="res://interactable.tscn" id="5_036b0"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_tlwt5")
@@ -28,4 +29,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="Walls" parent="." instance=ExtResource("2_fj7yv")]
 
+[node name="Interactable" parent="." instance=ExtResource("5_036b0")]
+
 [connection signal="moved" from="Player" to="." method="_on_player_moved"]
+[connection signal="explode_bomb" from="Interactable" to="." method="_on_interactable_explode_bomb"]

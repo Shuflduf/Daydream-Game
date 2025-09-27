@@ -5,10 +5,7 @@ extends Node2D
 @warning_ignore("unused_private_class_variable")
 @export_tool_button("Outlines") var _go = _generate_outlines
 
-var tiles: Array[Vector2i]:
-	set(value):
-		tiles = value
-		prints("NEW TILES", tiles)
+var tiles: Array[Vector2i]
 
 func _ready() -> void:
 	tiles = []

@@ -11,7 +11,7 @@ const DIRS = {
 	&"left": Vector2i(-1, 0),
 	&"right": Vector2i(1, 0),
 }
-
+	
 
 func _update_position():
 	position = Vector2(tile_pos * 8)

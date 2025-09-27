@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://ujivl2lh7elw"]
+
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="1_wh154"]
+[ext_resource type="Script" uid="uid://br7j7ie6c2713" path="res://interactable.gd" id="2_jcy0q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jcy0q"]
+texture = ExtResource("1_wh154")
+texture_region_size = Vector2i(8, 8)
+2:0/0 = 0
+2:0/0/custom_data_0 = &"chest"
+3:0/0 = 0
+3:0/0/custom_data_0 = &"sword"
+1:2/0 = 0
+1:2/0/custom_data_0 = &"bomb"
+
+[sub_resource type="TileSet" id="TileSet_0k2he"]
+tile_size = Vector2i(8, 8)
+custom_data_layer_0/name = "id"
+custom_data_layer_0/type = 21
+sources/0 = SubResource("TileSetAtlasSource_jcy0q")
+
+[node name="Interactable" type="TileMapLayer"]
+tile_set = SubResource("TileSet_0k2he")
+script = ExtResource("2_jcy0q")

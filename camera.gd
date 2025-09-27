@@ -2,7 +2,10 @@ extends Camera2D
 
 const CENTER_OFFSET = 7
 
-var focus_pos: int = CENTER_OFFSET
+var focus_pos: int = 4
+
+func _ready() -> void:
+	_update_position()
 
 func _update_position():
 	position.x = (focus_pos - CENTER_OFFSET) * 8
