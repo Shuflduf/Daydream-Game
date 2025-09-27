@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu6viuvsf4kmw"]
+
+[ext_resource type="Script" uid="uid://dw4mhebrxnux0" path="res://ghost_enemy.gd" id="1_dpm11"]
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="1_x1jlk"]
+[ext_resource type="Script" uid="uid://bvqp67qek7aff" path="res://health.gd" id="3_beoy7"]
+
+[node name="GhostEnemy" type="Node2D" groups=["Enemy"]]
+script = ExtResource("1_dpm11")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 20
+texture = ExtResource("1_x1jlk")
+centered = false
+region_enabled = true
+region_rect = Rect2(16, 16, 8, 8)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_beoy7")
+max_health = 2
+metadata/_custom_type_script = "uid://bvqp67qek7aff"

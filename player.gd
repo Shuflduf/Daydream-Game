@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var health: Health = $Health
+
 signal moved(new_tile_pos: Vector2i)
 
 var tile_pos: Vector2i

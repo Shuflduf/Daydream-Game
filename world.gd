@@ -4,6 +4,8 @@ extends Node2D
 
 func cycle():
 	$Interactable.cycle()
+	for enemy in get_tree().get_nodes_in_group(&"Enemy"):
+		enemy.cycle()
 
 
 func _ready() -> void:
@@ -32,7 +34,7 @@ func generate_rock(offset: Vector2i, diameter: float):
 
 
 func _on_player_moved(new_tile_pos: Vector2i) -> void:
-	cycle()
+	
 	if new_tile_pos in $Walls.tiles:
 		$Player.cancel_move()
 		#$Walls.tiles.erase(new_tile_pos)
@@ -43,6 +45,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		$Interactable.interact(new_tile_pos)
 	else:
 		$Camera.update_focus(new_tile_pos.x)
+	cycle()
 	
 
 func get_collision_tiles() -> Array[Vector2i]:
