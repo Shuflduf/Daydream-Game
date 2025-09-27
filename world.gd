@@ -24,3 +24,6 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		#$Walls.tiles.erase(new_tile_pos)
 		$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
 		$Walls.place_tiles()
+	else:
+		$Camera.update_focus(new_tile_pos.x)
+	
