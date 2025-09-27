@@ -12,15 +12,16 @@ const DIRS = {
 	&"right": Vector2i(1, 0),
 }
 
+
 func _update_position():
 	position = Vector2(tile_pos * 8)
+
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	for dir in DIRS:
 		if event.is_action_pressed(dir):
 			prev_pos = tile_pos
 			tile_pos += DIRS[dir]
-			prints("move to", tile_pos, ", fallback to", prev_pos)
 			_update_position()
 			moved.emit(tile_pos)
 			if dir == &"left":
@@ -29,7 +30,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				$Sprite.flip_h = false
 			break
 
+
 func cancel_move():
-	prints("falling back to", prev_pos)
 	tile_pos = prev_pos
 	_update_position()
