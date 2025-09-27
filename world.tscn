@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dd30axi4gohbt"]
+
+[ext_resource type="PackedScene" uid="uid://db4cc18hdvu45" path="res://player.tscn" id="1_f3sb7"]
+[ext_resource type="Script" uid="uid://d3juvjra20lao" path="res://world.gd" id="1_tlwt5"]
+[ext_resource type="PackedScene" uid="uid://bxtxj8wn0ivdn" path="res://walls.tscn" id="2_fj7yv"]
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_tlwt5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+anchor_mode = 0
+zoom = Vector2(10.125, 10.125)
+
+[node name="Player" parent="." instance=ExtResource("1_f3sb7")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Walls" parent="." instance=ExtResource("2_fj7yv")]
+
+[connection signal="moved" from="Player" to="." method="_on_player_moved"]
