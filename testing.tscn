@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bdq6tvblf0fml"]
+
+[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://JetBrains.ttf" id="1_qrja6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_co24e"]
+font = ExtResource("1_qrja6")
+font_size = 48
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Shuflduf Gaming the second
+"
+label_settings = SubResource("LabelSettings_co24e")
