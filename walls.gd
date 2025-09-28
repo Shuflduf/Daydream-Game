@@ -8,10 +8,14 @@ extends Node2D
 var tiles: Array[Vector2i]
 
 func _ready() -> void:
+	tiles = $Base.get_used_cells()
+#	reset()
+
+
+func reset():
 	tiles = []
 	for tile in $Base.get_used_cells():
 		$Base.erase_cell(tile)
-
 
 func place_tiles():
 	for tile in $Base.get_used_cells():

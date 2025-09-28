@@ -12,6 +12,11 @@ const ATLAS = {
 var bombs: Dictionary[Vector2i, int]
 var tiles: Array[Vector2i]
 
+@onready var player = get_tree().get_first_node_in_group(&"Player")
+
+func _ready() -> void:
+	tiles = get_used_cells()
+
 func cycle():
 	for bomb_pos in bombs:
 		bombs[bomb_pos] -= 1
@@ -33,8 +38,9 @@ func interact(pos: Vector2i):
 		&"chest":
 			set_cell(pos, 0, ATLAS[&"sword"])
 		&"sword":
-			erase_cell(pos)
-			tiles.erase(pos)
+			if player.accept_item(&"sword"):
+				erase_cell(pos)
+				tiles.erase(pos)
 		&"bomb":
 			if not bombs.has(pos):
 				bombs[pos] = 3

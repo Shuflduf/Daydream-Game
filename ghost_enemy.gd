@@ -1,22 +1,29 @@
-extends Node2D
+extends Entity
 
 @onready var health: Health = $Health
 @onready var player = get_tree().get_first_node_in_group(&"Player")
 
-var tile_pos = Vector2i(13, 2)
 var can_move = true
 
-func _update_position():
-	position = Vector2(tile_pos * 8)
-
 func cycle():
+	var target_vec = player.tile_pos - tile_pos
+	if target_vec == Vector2i.ZERO:
+		player.cancel_move()
+		player.health.shift(-1)
+		health.shift(-1)
 	if can_move:
-		var target_vec = player.tile_pos - tile_pos
-		if abs(target_vec.x) > abs(target_vec.y):
+		if target_vec.length() == 1.0:
+			pass
+		elif abs(target_vec.x) > abs(target_vec.y):
 			tile_pos.x += signi(target_vec.x)
+			can_move = false
 		else:
 			tile_pos.y += signi(target_vec.y)
-		_update_position()
-		can_move = false
+			can_move = false
+		
 	else:
 		can_move = true
+
+
+func _on_health_die() -> void:
+	queue_free()

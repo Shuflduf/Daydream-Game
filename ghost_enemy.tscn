@@ -18,3 +18,5 @@ region_rect = Rect2(16, 16, 8, 8)
 script = ExtResource("3_beoy7")
 max_health = 2
 metadata/_custom_type_script = "uid://bvqp67qek7aff"
+
+[connection signal="die" from="Health" to="." method="_on_health_die"]

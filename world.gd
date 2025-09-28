@@ -9,7 +9,8 @@ func cycle():
 
 
 func _ready() -> void:
-	generate_rock(Vector2i(8, 4), 8.3)
+	pass
+	#generate_rock(Vector2i(8, 4), 8.3)
 
 
 func generate_rock(offset: Vector2i, diameter: float):
