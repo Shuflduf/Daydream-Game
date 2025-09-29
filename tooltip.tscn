@@ -6,6 +6,7 @@
 size = Vector2(7, 7)
 
 [node name="Tooltip" type="Area2D"]
+z_index = 1000
 collision_mask = 0
 script = ExtResource("1_gwequ")
 
@@ -14,3 +15,4 @@ position = Vector2(3.5, 3.5)
 shape = SubResource("RectangleShape2D_dpm11")
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
