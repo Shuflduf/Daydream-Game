@@ -67,10 +67,12 @@ func get_collision_tiles() -> Array[Vector2i]:
 
 
 func _on_interactable_explode_bomb(pos: Vector2i) -> void:
-	for x in range(-2, 3):
-		for y in range(-2, 3):
+	var explode_radius = 2.5
+	var ep = floori(explode_radius)
+	for x in range(-ep, ep+1):
+		for y in range(-ep, ep+1):
 			var length = sqrt((x*x)+(y*y))
-			if length > 2:
+			if length > explode_radius:
 				continue
 			var target_pos = pos + Vector2i(x, y)
 			#$Walls.tiles.erase(target_pos)

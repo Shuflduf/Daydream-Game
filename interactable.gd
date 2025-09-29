@@ -55,11 +55,11 @@ func interact(pos: Vector2i):
 		&"chest":
 			set_cell(pos, 0, ATLAS[&"sword"])
 		&"sword":
-			if player.accept_item(&"sword"):
+			if player.accept_item(tile_id):
 				erase_cell(pos)
 				tiles.erase(pos)
 		&"bomb":
-			if player.accept_item(&"bomb") and not bombs.has(pos):
+			if player.accept_item(tile_id) and not bombs.has(pos):
 				erase_cell(pos)
 				tiles.erase(pos)
 	print(tile_id)
