@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ft4p3e207tyt"]
+[gd_scene load_steps=13 format=3 uid="uid://ft4p3e207tyt"]
 
 [ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://background.tres" id="1_pt1ru"]
 [ext_resource type="PackedScene" uid="uid://dd30axi4gohbt" path="res://world.tscn" id="1_rh14k"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://myg80b6k1npu" path="res://tooltip.tscn" id="4_jllm8"]
 [ext_resource type="Script" uid="uid://di3g6iy465jjn" path="res://energy_bar.gd" id="6_0noqu"]
 [ext_resource type="Script" uid="uid://bhqhjfhmlmut3" path="res://arrow.gd" id="7_pxv5b"]
+[ext_resource type="Script" uid="uid://d0lgfd0wmmnna" path="res://item_tooltips.gd" id="9_5ofep"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("3_pt1ru")
@@ -186,3 +187,6 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("4_0noqu")
 bbcode_enabled = true
+
+[node name="ItemTooltips" type="Node" parent="."]
+script = ExtResource("9_5ofep")
