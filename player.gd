@@ -4,6 +4,7 @@ extends Entity
 @onready var ui: Control = get_tree().get_first_node_in_group(&"UI")
 
 signal moved(new_tile_pos: Vector2i)
+signal item_used(face_dir: Vector2i, id: StringName)
 
 var last_move: Vector2i
 
@@ -26,13 +27,16 @@ func _unhandled_key_input(event: InputEvent) -> void:
 		if event.is_action_pressed(dir):
 			last_move = DIRS[dir]
 			ui.arrow.change_direction(atan2(last_move.x, -last_move.y))
-			tile_pos += DIRS[dir]
-			moved.emit(tile_pos)
+			moved.emit(tile_pos + DIRS[dir])
+			#tile_pos += DIRS[dir]
 			if dir == &"left":
 				$Sprite.flip_h = true
 			elif dir == &"right":
 				$Sprite.flip_h = false
 			break
+
+func actually_move():
+	tile_pos += last_move
 
 
 func accept_item(id: StringName) -> bool:
@@ -58,15 +62,22 @@ func reset_item(first: bool):
 
 func use_item(first: bool):
 	var target_id = item_one if first else item_two
-	match target_id:
-		&"sword":
-			var tile_in_front = tile_pos + last_move
-			print(tile_in_front)
-			reset_item(first)
-			var enemies = EnemyUtils.get_enemy_tiles()
-			if enemies.has(tile_in_front):
-				enemies[tile_in_front].health.shift(-3)
-			moved.emit(tile_pos)
+	item_used.emit(last_move, target_id)
+	reset_item(first)
+	#match target_id:
+		#&"sword":
+			#
+			#print(tile_in_front)
+			#reset_item(first)
+			#var enemies = EnemyUtils.get_enemy_tiles()
+			#if enemies.has(tile_in_front):
+				#enemies[tile_in_front].health.shift(-3)
+				#moved.emit(tile_pos)
+			#else:
+				#var t = last_move
+				#last_move = Vector2i.ZERO
+				#moved.emit(tile_in_front)
+				#last_move = t
 
 
 func _on_health_changed(new_health: int) -> void:

@@ -1,6 +1,6 @@
 extends Node2D
 
-
+@onready var player: Node2D = $Player
 
 func cycle():
 	$Interactable.cycle()
@@ -35,16 +35,21 @@ func generate_rock(offset: Vector2i, diameter: float):
 
 
 func _on_player_moved(new_tile_pos: Vector2i) -> void:
-	
+	var enemies = EnemyUtils.get_enemy_tiles()
 	if new_tile_pos in $Walls.tiles:
-		$Player.cancel_move()
+		#player.cancel_move()
 		#$Walls.tiles.erase(new_tile_pos)
+		#player.health.shift(-1)
 		$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
 		$Walls.place_tiles()
 	elif new_tile_pos in $Interactable.tiles:
-		$Player.cancel_move()
+		#player.cancel_move()
 		$Interactable.interact(new_tile_pos)
+	elif new_tile_pos in enemies:
+		enemies[new_tile_pos].health.shift(-1)
+		player.health.shift(-1)
 	else:
+		player.actually_move()
 		$Camera.update_focus(new_tile_pos.x)
 	cycle()
 	
@@ -64,3 +69,19 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 				continue
 			$Walls.tiles.erase(pos + Vector2i(x, y))
 	$Walls.place_tiles()
+
+
+func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
+	match id:
+		&"sword":
+			var enemies = EnemyUtils.get_enemy_tiles()
+			var target_tile = player.tile_pos + face_dir
+			if enemies.has(target_tile):
+				enemies[target_tile].health.shift(-3)
+			elif target_tile in $Walls.tiles:
+				$Walls.tiles = $Walls.tiles.filter(func(t): return t != target_tile)
+				$Walls.place_tiles()
+			else:
+				# this might be fucking stupid
+				player.health.shift(1)
+			cycle()

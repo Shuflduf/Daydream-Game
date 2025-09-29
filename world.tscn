@@ -45,6 +45,7 @@ tile_map_data = PackedByteArray("AAAJAAAAAAACAAAAAAAOAAcAAAACAAAAAAASAAMAAAACAAA
 [node name="GhostEnemy" parent="Enemies" instance=ExtResource("6_dwbse")]
 position = Vector2(104, 16)
 
+[connection signal="item_used" from="Player" to="." method="_on_player_item_used"]
 [connection signal="moved" from="Player" to="." method="_on_player_moved"]
 [connection signal="explode_bomb" from="Interactable" to="." method="_on_interactable_explode_bomb"]
 
