@@ -39,7 +39,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 	if new_tile_pos in $Walls.tiles:
 		#player.cancel_move()
 		#$Walls.tiles.erase(new_tile_pos)
-		#player.health.shift(-1)
+		player.health.shift(-1)
 		player.fake_move()
 		$Walls.remove_at(new_tile_pos)
 		#$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
@@ -89,7 +89,10 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 			if enemies.has(target_tile):
 				enemies[target_tile].health.shift(-3)
 			elif target_tile in $Walls.tiles:
-				$Walls.tiles = $Walls.tiles.filter(func(t): return t != target_tile)
+				while $Walls.tiles.has(target_tile):
+					$Walls.remove_at(target_tile)
+					target_tile += face_dir
+				#$Walls.remove_at(target_tile)
 				$Walls.place_tiles()
 			else:
 				# this might be fucking stupid
