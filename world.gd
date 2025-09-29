@@ -75,7 +75,6 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 			if length > explode_radius:
 				continue
 			var target_pos = pos + Vector2i(x, y)
-			#$Walls.tiles.erase(target_pos)
 			$Walls.remove_at(target_pos)
 			if player.tile_pos == target_pos:
 				player.health.shift(-2)

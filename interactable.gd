@@ -53,6 +53,7 @@ func interact(pos: Vector2i):
 	
 	match tile_id:
 		&"chest":
+			pickup_particles(pos, tile_id)
 			set_cell(pos, 0, ATLAS[&"sword"])
 		&"sword":
 			if player.accept_item(tile_id):
@@ -63,3 +64,11 @@ func interact(pos: Vector2i):
 				erase_cell(pos)
 				tiles.erase(pos)
 	print(tile_id)
+
+func pickup_particles(pos: Vector2i, id: StringName):
+	var new_particles = $GrabParticles.duplicate()
+	new_particles.texture.region.position = Vector2(ATLAS[id] * 8)
+	new_particles.position = Vector2(pos * 8) + Vector2(4.0, 4.0)
+	add_child(new_particles)
+	new_particles.restart()
+	new_particles.finished.connect(func(): new_particles.queue_free())

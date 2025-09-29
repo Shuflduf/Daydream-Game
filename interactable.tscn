@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ujivl2lh7elw"]
+[gd_scene load_steps=11 format=3 uid="uid://ujivl2lh7elw"]
 
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="1_wh154"]
 [ext_resource type="Script" uid="uid://br7j7ie6c2713" path="res://interactable.gd" id="2_jcy0q"]
@@ -27,6 +27,28 @@ outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0k2he"]
+atlas = ExtResource("1_wh154")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="Curve" id="Curve_0k2he"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.509901, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_surkw"]
+curve = SubResource("Curve_0k2he")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5clvg"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 20.0
+initial_velocity_min = 20.0
+initial_velocity_max = 20.0
+angular_velocity_min = -100.000015
+angular_velocity_max = 99.999985
+gravity = Vector3(0, 100, 0)
+scale_curve = SubResource("CurveTexture_surkw")
+
 [node name="Interactable" type="TileMapLayer"]
 tile_set = SubResource("TileSet_0k2he")
 script = ExtResource("2_jcy0q")
@@ -40,3 +62,12 @@ label_settings = SubResource("LabelSettings_surkw")
 horizontal_alignment = 1
 
 [node name="BombLabels" type="Node" parent="."]
+
+[node name="GrabParticles" type="GPUParticles2D" parent="."]
+z_index = 10
+emitting = false
+amount = 1
+texture = SubResource("AtlasTexture_0k2he")
+lifetime = 1.5
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_5clvg")
