@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://jug6qjncths4"
-path="res://.godot/imported/eat.wav-9661c91d906f9d586886d5e348e0a003.sample"
+uid="uid://cvs7awpwtov0e"
+path="res://.godot/imported/sword.wav-63aedd944c76c8511ac72c43314b1b24.sample"
 
 [deps]
 
-source_file="res://Assets/Sounds/eat.wav"
-dest_files=["res://.godot/imported/eat.wav-9661c91d906f9d586886d5e348e0a003.sample"]
+source_file="res://Assets/Sounds/sword.wav"
+dest_files=["res://.godot/imported/sword.wav-63aedd944c76c8511ac72c43314b1b24.sample"]
 
 [params]
 

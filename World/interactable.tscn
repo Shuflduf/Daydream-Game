@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://ujivl2lh7elw"]
+[gd_scene load_steps=12 format=3 uid="uid://ujivl2lh7elw"]
 
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="1_wh154"]
 [ext_resource type="Script" uid="uid://br7j7ie6c2713" path="res://World/interactable.gd" id="2_jcy0q"]
 [ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://Assets/JetBrains.ttf" id="3_0k2he"]
+[ext_resource type="AudioStream" uid="uid://dpi76qxhxwfca" path="res://Assets/Sounds/chest.wav" id="4_44moe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jcy0q"]
 texture = ExtResource("1_wh154")
@@ -73,3 +74,6 @@ texture = SubResource("AtlasTexture_0k2he")
 lifetime = 1.5
 one_shot = true
 process_material = SubResource("ParticleProcessMaterial_5clvg")
+
+[node name="Chest" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_44moe")

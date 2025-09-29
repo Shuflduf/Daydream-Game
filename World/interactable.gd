@@ -54,6 +54,7 @@ func interact(pos: Vector2i):
 	
 	match tile_id:
 		&"chest":
+			$Chest.play()
 			pickup_particles(pos, tile_id)
 			set_cell(pos, 0, ATLAS[&"sword"])
 		&"sword", &"potion":

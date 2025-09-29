@@ -43,7 +43,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		#$Walls.tiles.erase(new_tile_pos)
 		player.health.shift(-1)
 		player.fake_move()
-		$Attack.play()
+		$Eat.play()
 		$Walls.remove_at(new_tile_pos)
 		#$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
 		$Walls.place_tiles()
@@ -56,6 +56,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		enemies[new_tile_pos].fake_move()
 		player.fake_move()
 		player.health.shift(-1)
+		$Attack.play()
 	else:
 		player.actually_move()
 		$Camera.update_focus(new_tile_pos.x)
@@ -94,8 +95,10 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 		&"sword":
 			var enemies = EnemyUtils.get_enemy_tiles()
 			if enemies.has(target_tile):
+				$Sword.play()
 				enemies[target_tile].health.shift(-3)
 			elif target_tile in $Walls.tiles:
+				$Sword.play()
 				var walls_broken = 0
 				while $Walls.tiles.has(target_tile) and walls_broken < 3:
 					$Attack.play()
