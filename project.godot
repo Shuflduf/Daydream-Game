@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Daydream Game"
-run/main_scene="uid://dd30axi4gohbt"
+run/main_scene="uid://ft4p3e207tyt"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,7 @@ EnemyUtils="*res://enemy_utils.gd"
 [display]
 
 window/size/resizable=false
-window/stretch/mode="canvas_items"
+window/stretch/mode="viewport"
 
 [editor_plugins]
 
@@ -32,6 +32,7 @@ enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 Player=""
 Enemy=""
+UI=""
 
 [input]
 

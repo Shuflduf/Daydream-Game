@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://bdq6tvblf0fml"]
+[gd_scene load_steps=2 format=3 uid="uid://bdq6tvblf0fml"]
+
+[ext_resource type="Texture2D" uid="uid://cttqoicjr6a76" path="res://icon.svg" id="1_qrja6"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -7,3 +9,23 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+gui_disable_input = true
+
+[node name="Node2D" type="Node2D" parent="SubViewportContainer/SubViewport"]
+
+[node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport/Node2D"]
+position = Vector2(278, 264)
+texture = ExtResource("1_qrja6")

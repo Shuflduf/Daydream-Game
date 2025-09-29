@@ -1,7 +1,7 @@
 extends Entity
 
 @onready var health: Health = $Health
-@onready var ui: Control = %UI
+@onready var ui: Control = get_tree().get_first_node_in_group(&"UI")
 
 signal moved(new_tile_pos: Vector2i)
 
@@ -25,6 +25,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	for dir in DIRS:
 		if event.is_action_pressed(dir):
 			last_move = DIRS[dir]
+			ui.arrow.change_direction(atan2(last_move.x, -last_move.y))
 			tile_pos += DIRS[dir]
 			moved.emit(tile_pos)
 			if dir == &"left":
@@ -66,3 +67,8 @@ func use_item(first: bool):
 			if enemies.has(tile_in_front):
 				enemies[tile_in_front].health.shift(-3)
 			moved.emit(tile_pos)
+
+
+func _on_health_changed(new_health: int) -> void:
+	ui.energy.current_energy = new_health
+	ui.energy.update_bars()

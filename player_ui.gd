@@ -1,4 +1,8 @@
+class_name UI
 extends Control
+
+@onready var energy: PanelContainer = %Energy
+@onready var arrow: PanelContainer = %Arrow
 
 func set_item(first: bool, id: StringName):
 	var tile_pos: Vector2i

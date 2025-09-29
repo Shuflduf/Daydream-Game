@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=3 uid="uid://b3phmry8p8uhn"]
+
+[ext_resource type="Script" uid="uid://ccddk8sqxxi6r" path="res://player_ui.gd" id="1_27fn8"]
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="2_nltto"]
+[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://JetBrains.ttf" id="3_ibotj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("2_nltto")
+region = Rect2(24, 24, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sweqy"]
+font = ExtResource("3_ibotj")
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_nltto")
+region = Rect2(24, 24, 8, 8)
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_27fn8")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+alignment = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="TexOne" type="TextureRect" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_hqtel")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+text = "< K >"
+label_settings = SubResource("LabelSettings_sweqy")
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/PanelContainer2"]
+layout_mode = 2
+
+[node name="TexTwo" type="TextureRect" parent="HBoxContainer/PanelContainer2/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_i3pqv")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer/PanelContainer2/VBoxContainer"]
+layout_mode = 2
+text = "< L >"
+label_settings = SubResource("LabelSettings_sweqy")
+horizontal_alignment = 1

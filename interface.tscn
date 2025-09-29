@@ -1,34 +1,167 @@
-[gd_scene load_steps=2 format=3 uid="uid://ft4p3e207tyt"]
+[gd_scene load_steps=11 format=3 uid="uid://ft4p3e207tyt"]
 
+[ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://background.tres" id="1_pt1ru"]
 [ext_resource type="PackedScene" uid="uid://dd30axi4gohbt" path="res://world.tscn" id="1_rh14k"]
+[ext_resource type="Script" uid="uid://ccddk8sqxxi6r" path="res://player_ui.gd" id="2_4rbkc"]
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="3_pt1ru"]
+[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://JetBrains.ttf" id="4_0noqu"]
+[ext_resource type="Script" uid="uid://di3g6iy465jjn" path="res://energy_bar.gd" id="6_0noqu"]
+[ext_resource type="Script" uid="uid://bhqhjfhmlmut3" path="res://arrow.gd" id="7_pxv5b"]
 
-[node name="Interface" type="Control"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("3_pt1ru")
+region = Rect2(24, 24, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sweqy"]
+font = ExtResource("4_0noqu")
+font_size = 24
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("3_pt1ru")
+region = Rect2(24, 24, 8, 8)
+
+[node name="Interface" type="Control" groups=["UI"]]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_4rbkc")
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -128.0
-offset_bottom = -72.0
 grow_horizontal = 2
 grow_vertical = 2
-ratio = 1.7777
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="AspectRatioContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = -10
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_pt1ru")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
 layout_mode = 2
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="AspectRatioContainer/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
 canvas_item_default_texture_filter = 0
-size = Vector2i(1023, 576)
-size_2d_override = Vector2i(115, 65)
+size = Vector2i(1042, 628)
+size_2d_override = Vector2i(112, 64)
 size_2d_override_stretch = true
+render_target_update_mode = 4
 
-[node name="World" parent="AspectRatioContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_rh14k")]
+[node name="World" parent="VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_rh14k")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -10
+
+[node name="ItemOne" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_pt1ru")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne"]
+layout_mode = 2
+
+[node name="TexOne" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_hqtel")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer"]
+layout_mode = 2
+text = "[ K ]"
+label_settings = SubResource("LabelSettings_sweqy")
+horizontal_alignment = 1
+
+[node name="ItemTwo" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_pt1ru")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemTwo"]
+layout_mode = 2
+
+[node name="TexTwo" type="TextureRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemTwo/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+texture = SubResource("AtlasTexture_i3pqv")
+expand_mode = 5
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemTwo/VBoxContainer"]
+layout_mode = 2
+text = "[ L ]"
+label_settings = SubResource("LabelSettings_sweqy")
+horizontal_alignment = 1
+
+[node name="Energy" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+theme_override_styles/panel = ExtResource("1_pt1ru")
+script = ExtResource("6_0noqu")
+no_energy_col = Color(0.22745098, 0.19607843, 0.46666667, 1)
+current_energy = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/Energy"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="EnergyBase" type="ColorRect" parent="VBoxContainer/HBoxContainer/VBoxContainer/Energy/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="EnergyContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/Energy/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Arrow" type="PanelContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = ExtResource("1_pt1ru")
+script = ExtResource("7_pxv5b")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="VBoxContainer/HBoxContainer/VBoxContainer/Arrow"]
+layout_mode = 2
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="VBoxContainer/HBoxContainer/VBoxContainer/Arrow/SubViewportContainer"]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+gui_disable_input = true
+size = Vector2i(80, 80)
+
+[node name="Sprite" type="Sprite2D" parent="VBoxContainer/HBoxContainer/VBoxContainer/Arrow/SubViewportContainer/SubViewport"]
+position = Vector2(40, 40)
+scale = Vector2(10, 10)
+texture = ExtResource("3_pt1ru")
+region_enabled = true
+region_rect = Rect2(8, 24, 8, 8)

@@ -6,6 +6,7 @@ var focus_pos: int = 4
 
 func _ready() -> void:
 	_update_position()
+	zoom = Vector2.ONE
 
 func _update_position():
 	position.x = (focus_pos - CENTER_OFFSET) * 8

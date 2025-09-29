@@ -12,7 +12,8 @@ script = ExtResource("1_tlwt5")
 
 [node name="Camera" type="Camera2D" parent="."]
 anchor_mode = 0
-zoom = Vector2(10.125, 10.125)
+zoom = Vector2(10.25, 10.25)
+limit_enabled = false
 script = ExtResource("2_aqk2v")
 
 [node name="Player" parent="." instance=ExtResource("1_f3sb7")]
