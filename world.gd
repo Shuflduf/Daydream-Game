@@ -92,14 +92,16 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 			if enemies.has(target_tile):
 				enemies[target_tile].health.shift(-3)
 			elif target_tile in $Walls.tiles:
-				while $Walls.tiles.has(target_tile):
+				var walls_broken = 0
+				while $Walls.tiles.has(target_tile) and walls_broken < 3:
 					$Walls.remove_at(target_tile)
 					target_tile += face_dir
+					walls_broken += 1
 				#$Walls.remove_at(target_tile)
 				$Walls.place_tiles()
 			else:
 				# this might be fucking stupid
-				player.health.shift(1)
+				player.health.shift(2)
 			cycle()
 		&"bomb":
 			$Interactable.add_interactable(target_tile, id)

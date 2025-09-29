@@ -190,3 +190,8 @@ bbcode_enabled = true
 
 [node name="ItemTooltips" type="Node" parent="."]
 script = ExtResource("9_5ofep")
+
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer/TexOne" to="ItemTooltips" method="_on_tex_one_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer/TexOne" to="ItemTooltips" method="_on_tex_one_mouse_exited"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemTwo/VBoxContainer/TexTwo" to="ItemTooltips" method="_on_tex_two_mouse_entered"]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemTwo/VBoxContainer/TexTwo" to="ItemTooltips" method="_on_tex_two_mouse_exited"]

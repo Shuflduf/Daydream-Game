@@ -3,8 +3,10 @@ extends Control
 
 @onready var energy: PanelContainer = %Energy
 @onready var arrow: PanelContainer = %Arrow
+@onready var item_tooltips: Node = $ItemTooltips
 
 func set_item(first: bool, id: StringName):
+	$ItemTooltips.set_item(first, id)
 	var tile_pos: Vector2i
 	if id.is_empty():
 		tile_pos = Vector2i(3, 3)
