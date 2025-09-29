@@ -77,7 +77,7 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 			var target_pos = pos + Vector2i(x, y)
 			$Walls.remove_at(target_pos)
 			if player.tile_pos == target_pos:
-				player.health.shift(-2)
+				player.health.shift(-4)
 	$Walls.place_tiles()
 
 
@@ -98,3 +98,5 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 		&"bomb":
 			$Interactable.add_interactable(target_tile, id)
 			$Interactable.trigger_bomb(target_tile)
+		&"potion":
+			player.health.shift(4)

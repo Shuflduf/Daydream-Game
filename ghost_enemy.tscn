@@ -13,6 +13,7 @@ texture = ExtResource("1_x1jlk")
 centered = false
 region_enabled = true
 region_rect = Rect2(16, 16, 8, 8)
+region_filter_clip_enabled = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_beoy7")

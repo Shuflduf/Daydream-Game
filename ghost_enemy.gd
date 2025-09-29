@@ -9,11 +9,11 @@ func cycle():
 	var target_vec = player.tile_pos - tile_pos
 	if !target_vec.length() <= 1.0:
 		if can_move:
-			if abs(target_vec.x) > abs(target_vec.y):
-				tile_pos.x += signi(target_vec.x)
+			if target_vec.y != 0 and abs(target_vec.x) < 4:
+				tile_pos.y += signi(target_vec.y)
 				can_move = false
 			else:
-				tile_pos.y += signi(target_vec.y)
+				tile_pos.x += signi(target_vec.x)
 				can_move = false
 		else:
 			can_move = true

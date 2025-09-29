@@ -7,7 +7,8 @@ const LABEL_OFFSET = Vector2(1.0, 0.0)
 const ATLAS = {
 	&"chest": Vector2i(2, 0),
 	&"sword": Vector2i(3, 0),
-	&"bomb": Vector2i(1, 2)
+	&"bomb": Vector2i(1, 2),
+	&"potion": Vector2i(2, 3)
 }
 
 var bombs: Dictionary[Vector2i, int]
@@ -55,7 +56,7 @@ func interact(pos: Vector2i):
 		&"chest":
 			pickup_particles(pos, tile_id)
 			set_cell(pos, 0, ATLAS[&"sword"])
-		&"sword":
+		&"sword", &"potion":
 			if player.accept_item(tile_id):
 				erase_cell(pos)
 				tiles.erase(pos)
