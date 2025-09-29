@@ -81,10 +81,10 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 
 
 func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
+	var target_tile = player.tile_pos + face_dir
 	match id:
 		&"sword":
 			var enemies = EnemyUtils.get_enemy_tiles()
-			var target_tile = player.tile_pos + face_dir
 			if enemies.has(target_tile):
 				enemies[target_tile].health.shift(-3)
 			elif target_tile in $Walls.tiles:
@@ -94,3 +94,6 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 				# this might be fucking stupid
 				player.health.shift(1)
 			cycle()
+		&"bomb":
+			$Interactable.add_interactable(target_tile, id)
+			$Interactable.trigger_bomb(target_tile)

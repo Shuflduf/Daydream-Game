@@ -30,15 +30,22 @@ func cycle():
 			explode_bomb.emit(bomb_pos)
 			bombs.erase(bomb_pos)
 		else:
-			var new_label = $BaseLabel.duplicate()
-			new_label.visible = true
-			new_label.position = Vector2(bomb_pos*8) + LABEL_OFFSET
-			new_label.text = str(bombs[bomb_pos])
-			$BombLabels.add_child(new_label)
+			add_label(bomb_pos)
+
+func add_label(pos: Vector2i):
+	var new_label = $BaseLabel.duplicate()
+	new_label.visible = true
+	new_label.position = Vector2(pos*8) + LABEL_OFFSET
+	new_label.text = str(bombs[pos])
+	$BombLabels.add_child(new_label)
 
 func add_interactable(pos: Vector2i, id: StringName):
 	tiles.append(pos)
 	set_cell(pos, 0, ATLAS[id])
+
+func trigger_bomb(pos: Vector2i):
+	bombs[pos] = 3
+	add_label(pos)
 
 func interact(pos: Vector2i):
 	var tile_id = get_cell_tile_data(pos).get_custom_data("id")
@@ -52,6 +59,7 @@ func interact(pos: Vector2i):
 				erase_cell(pos)
 				tiles.erase(pos)
 		&"bomb":
-			if not bombs.has(pos):
-				bombs[pos] = 3
+			if player.accept_item(&"bomb") and not bombs.has(pos):
+				erase_cell(pos)
+				tiles.erase(pos)
 	print(tile_id)
