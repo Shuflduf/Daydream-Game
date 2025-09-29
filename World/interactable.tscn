@@ -1,8 +1,8 @@
 [gd_scene load_steps=11 format=3 uid="uid://ujivl2lh7elw"]
 
-[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="1_wh154"]
-[ext_resource type="Script" uid="uid://br7j7ie6c2713" path="res://interactable.gd" id="2_jcy0q"]
-[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://JetBrains.ttf" id="3_0k2he"]
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="1_wh154"]
+[ext_resource type="Script" uid="uid://br7j7ie6c2713" path="res://World/interactable.gd" id="2_jcy0q"]
+[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://Assets/JetBrains.ttf" id="3_0k2he"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jcy0q"]
 texture = ExtResource("1_wh154")

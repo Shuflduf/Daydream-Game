@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://bxtxj8wn0ivdn"]
 
-[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="1_0ugm7"]
-[ext_resource type="Script" uid="uid://bcb0wtfjyaxjg" path="res://walls.gd" id="1_vqaso"]
-[ext_resource type="PackedScene" uid="uid://n8it6kfujpvj" path="res://outline.tscn" id="3_uuaxm"]
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="1_0ugm7"]
+[ext_resource type="Script" uid="uid://bcb0wtfjyaxjg" path="res://World/walls.gd" id="1_vqaso"]
+[ext_resource type="PackedScene" uid="uid://n8it6kfujpvj" path="res://World/outline.tscn" id="3_uuaxm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ugm7"]
 texture = ExtResource("1_0ugm7")

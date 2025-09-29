@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://ft4p3e207tyt"]
 
-[ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://background.tres" id="1_pt1ru"]
-[ext_resource type="PackedScene" uid="uid://dd30axi4gohbt" path="res://world.tscn" id="1_rh14k"]
-[ext_resource type="Script" uid="uid://ccddk8sqxxi6r" path="res://player_ui.gd" id="2_4rbkc"]
-[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="3_pt1ru"]
-[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://JetBrains.ttf" id="4_0noqu"]
-[ext_resource type="PackedScene" uid="uid://myg80b6k1npu" path="res://tooltip.tscn" id="4_jllm8"]
-[ext_resource type="Script" uid="uid://di3g6iy465jjn" path="res://energy_bar.gd" id="6_0noqu"]
-[ext_resource type="Script" uid="uid://bhqhjfhmlmut3" path="res://arrow.gd" id="7_pxv5b"]
-[ext_resource type="Script" uid="uid://d0lgfd0wmmnna" path="res://item_tooltips.gd" id="9_5ofep"]
+[ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://Assets/background.tres" id="1_pt1ru"]
+[ext_resource type="PackedScene" uid="uid://dd30axi4gohbt" path="res://World/world.tscn" id="1_rh14k"]
+[ext_resource type="Script" uid="uid://bxis6xu6brqtj" path="res://HUD/hud.gd" id="1_t8dka"]
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="3_pt1ru"]
+[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://Assets/JetBrains.ttf" id="4_0noqu"]
+[ext_resource type="PackedScene" uid="uid://myg80b6k1npu" path="res://World/tooltip.tscn" id="4_jllm8"]
+[ext_resource type="Script" uid="uid://di3g6iy465jjn" path="res://HUD/energy_bar.gd" id="6_0noqu"]
+[ext_resource type="Script" uid="uid://bhqhjfhmlmut3" path="res://HUD/arrow.gd" id="7_pxv5b"]
+[ext_resource type="Script" uid="uid://d0lgfd0wmmnna" path="res://HUD/item_tooltips.gd" id="9_5ofep"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("3_pt1ru")
@@ -29,7 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_4rbkc")
+script = ExtResource("1_t8dka")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1

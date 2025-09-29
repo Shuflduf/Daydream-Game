@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://buwtlt7xugo8b"
-path="res://.godot/imported/JetBrains.ttf-e063fe21bd18d167f41c8011f5f05b58.fontdata"
+path="res://.godot/imported/JetBrains.ttf-0c6ea893cf4c62369a0ed7334acc03ce.fontdata"
 
 [deps]
 
-source_file="res://JetBrains.ttf"
-dest_files=["res://.godot/imported/JetBrains.ttf-e063fe21bd18d167f41c8011f5f05b58.fontdata"]
+source_file="res://Assets/JetBrains.ttf"
+dest_files=["res://.godot/imported/JetBrains.ttf-0c6ea893cf4c62369a0ed7334acc03ce.fontdata"]
 
 [params]
 

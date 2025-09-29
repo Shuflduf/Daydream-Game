@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bydlvdo8wwmn"]
 
-[ext_resource type="Script" uid="uid://pe75fxac66qc" path="res://transition.gd" id="1_2gi1b"]
+[ext_resource type="Script" uid="uid://pe75fxac66qc" path="res://Menus/transition.gd" id="1_2gi1b"]
 
 [node name="Transition" type="ColorRect"]
 anchors_preset = 15

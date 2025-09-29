@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://bdq6tvblf0fml"]
 
 [ext_resource type="Script" uid="uid://bcorua1wc0mn7" path="res://testing.gd" id="1_co24e"]
-[ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://background.tres" id="2_co24e"]
+[ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://Assets/background.tres" id="2_co24e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_feb8i"]
 size = Vector2(23.97313, 219.42677)
