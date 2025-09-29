@@ -32,6 +32,12 @@ func cycle():
 			bombs.erase(bomb_pos)
 		else:
 			add_label(bomb_pos)
+			bomb_sound(bomb_timer)
+			
+
+func bomb_sound(timer: int):
+	$Bomb.pitch_scale = remap(timer, 1.0, 3.0, 0.5, 1.0)
+	$Bomb.play()
 
 func add_label(pos: Vector2i):
 	var new_label = $BaseLabel.duplicate()
@@ -47,6 +53,7 @@ func add_interactable(pos: Vector2i, id: StringName):
 func trigger_bomb(pos: Vector2i):
 	bombs[pos] = 3
 	add_label(pos)
+	bomb_sound(3)
 
 func interact(pos: Vector2i):
 	var tile_id = get_cell_tile_data(pos).get_custom_data("id")
