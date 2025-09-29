@@ -9,6 +9,7 @@ var enabled = false
 
 func _ready() -> void:
 	tooltip.data["name"] = "Ghost"
+	tooltip.data["health"] = str(health.current)
 
 func cycle():
 	if not enabled:
@@ -42,6 +43,7 @@ func fake_move():
 
 func _on_health_die() -> void:
 	queue_free()
+	tooltip.remove()
 
 
 func _on_screen_entered() -> void:
@@ -49,4 +51,5 @@ func _on_screen_entered() -> void:
 
 
 func _on_health_changed(new_health: int) -> void:
-	tooltip.data["health"] = new_health
+	tooltip.data["health"] = str(new_health)
+	tooltip.update()

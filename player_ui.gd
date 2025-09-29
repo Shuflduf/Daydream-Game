@@ -15,14 +15,14 @@ func set_item(first: bool, id: StringName):
 	target_tex.texture.region.position = atlas_pos
 
 func set_tooltip(data: Dictionary[String, String]):
-	%TooltipLabel.text = "{\n"
+	%TooltipLabel.text = ""
 	for entry in data:
-		%TooltipLabel.text += " "
+		#%TooltipLabel.text += " "
 		%TooltipLabel.text += entry
-		%TooltipLabel.text += ":"
+		%TooltipLabel.text += ":\n "
 		%TooltipLabel.text += data[entry]
-		%TooltipLabel.text += ",\n"
-	%TooltipLabel.text += "}"
+		%TooltipLabel.text += "\n"
+	#%TooltipLabel.text += "}"
 
 
 func _on_area_2d_mouse_entered() -> void:
