@@ -27,7 +27,8 @@ func cycle():
 		#
 	#else:
 		#can_move = true
-
+func fake_move():
+	bump(-player.last_move)
 
 func _on_health_die() -> void:
 	queue_free()

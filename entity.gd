@@ -8,4 +8,12 @@ extends Node2D
 
 
 func _update_position():
-	position = Vector2(tile_pos * 8)
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(self, ^"position", Vector2(tile_pos * 8), 0.1)
+	#position = Vector2(tile_pos * 8)
+
+func bump(dir: Vector2i):
+	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(self, ^"position", position + Vector2(dir), 0.05)
+	tween.tween_property(self, ^"position", position, 0.05)
+	tween.tween_callback(_update_position)

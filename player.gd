@@ -38,6 +38,8 @@ func _unhandled_key_input(event: InputEvent) -> void:
 func actually_move():
 	tile_pos += last_move
 
+func fake_move():
+	bump(last_move)
 
 func accept_item(id: StringName) -> bool:
 	if item_one.is_empty():

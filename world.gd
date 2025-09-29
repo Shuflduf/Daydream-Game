@@ -40,13 +40,17 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		#player.cancel_move()
 		#$Walls.tiles.erase(new_tile_pos)
 		#player.health.shift(-1)
+		player.fake_move()
 		$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
 		$Walls.place_tiles()
 	elif new_tile_pos in $Interactable.tiles:
 		#player.cancel_move()
+		player.fake_move()
 		$Interactable.interact(new_tile_pos)
 	elif new_tile_pos in enemies:
 		enemies[new_tile_pos].health.shift(-1)
+		enemies[new_tile_pos].fake_move()
+		player.fake_move()
 		player.health.shift(-1)
 	else:
 		player.actually_move()
