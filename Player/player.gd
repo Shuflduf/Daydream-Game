@@ -28,6 +28,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			last_move = DIRS[dir]
 			ui.arrow.change_direction(atan2(last_move.x, -last_move.y))
 			moved.emit(tile_pos + DIRS[dir])
+			
 			#tile_pos += DIRS[dir]
 			if dir == &"left":
 				$Sprite.flip_h = true
@@ -36,6 +37,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			break
 
 func actually_move():
+	$Walk.play()
 	tile_pos += last_move
 
 func fake_move():
@@ -80,7 +82,8 @@ func use_item(first: bool):
 				#last_move = Vector2i.ZERO
 				#moved.emit(tile_in_front)
 				#last_move = t
-
+func heal():
+	$Heal.play()
 
 func _on_health_changed(new_health: int) -> void:
 	ui.energy.current_energy = new_health

@@ -1,8 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://db4cc18hdvu45"]
+[gd_scene load_steps=7 format=3 uid="uid://db4cc18hdvu45"]
 
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://dey1yjjhrirsa" path="res://Player/player.gd" id="1_onrkg"]
 [ext_resource type="Script" uid="uid://bvqp67qek7aff" path="res://World/health.gd" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://6va0yfc73a1e" path="res://Assets/Sounds/walk.wav" id="4_gwnis"]
+[ext_resource type="AudioStream" uid="uid://c8jy6y87i3env" path="res://Assets/Sounds/potion.wav" id="6_fhl08"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_k53q1"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("4_gwnis")
 
 [node name="Player" type="Node2D" groups=["Player"]]
 script = ExtResource("1_onrkg")
@@ -17,5 +24,11 @@ region_rect = Rect2(0, 0, 8, 8)
 script = ExtResource("3_i3pqv")
 max_health = 8
 metadata/_custom_type_script = "uid://bvqp67qek7aff"
+
+[node name="Walk" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_k53q1")
+
+[node name="Heal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_fhl08")
 
 [connection signal="changed" from="Health" to="." method="_on_health_changed"]

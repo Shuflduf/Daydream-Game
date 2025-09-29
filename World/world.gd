@@ -43,6 +43,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		#$Walls.tiles.erase(new_tile_pos)
 		player.health.shift(-1)
 		player.fake_move()
+		$Attack.play()
 		$Walls.remove_at(new_tile_pos)
 		#$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
 		$Walls.place_tiles()
@@ -84,6 +85,7 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 			elif enemies.has(target_pos):
 				enemies[target_pos].health.shift(-4)
 	$Walls.place_tiles()
+	$Bomb.play()
 
 
 func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
@@ -96,6 +98,7 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 			elif target_tile in $Walls.tiles:
 				var walls_broken = 0
 				while $Walls.tiles.has(target_tile) and walls_broken < 3:
+					$Attack.play()
 					$Walls.remove_at(target_tile)
 					target_tile += face_dir
 					walls_broken += 1
@@ -103,10 +106,12 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 				$Walls.place_tiles()
 			else:
 				# this might be fucking stupid
+				player.heal()
 				player.health.shift(2)
 			cycle()
 		&"bomb":
 			$Interactable.add_interactable(target_tile, id)
 			$Interactable.trigger_bomb(target_tile)
 		&"potion":
+			player.heal()
 			player.health.shift(4)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://dd30axi4gohbt"]
+[gd_scene load_steps=10 format=4 uid="uid://dd30axi4gohbt"]
 
 [ext_resource type="PackedScene" uid="uid://db4cc18hdvu45" path="res://Player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://d3juvjra20lao" path="res://World/world.gd" id="1_tlwt5"]
@@ -6,6 +6,13 @@
 [ext_resource type="PackedScene" uid="uid://bxtxj8wn0ivdn" path="res://World/walls.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ujivl2lh7elw" path="res://World/interactable.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://cu6viuvsf4kmw" path="res://Enemies/ghost_enemy.tscn" id="6_dwbse"]
+[ext_resource type="AudioStream" uid="uid://rdo7chr04f33" path="res://Assets/Sounds/explosion.wav" id="7_yf0ba"]
+[ext_resource type="AudioStream" uid="uid://div4da4xnsyfl" path="res://Assets/Sounds/hit.wav" id="8_eidgh"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oe8m4"]
+random_pitch = 1.5
+streams_count = 1
+stream_0/stream = ExtResource("8_eidgh")
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_tlwt5")
@@ -39,6 +46,12 @@ position = Vector2(104, 16)
 
 [node name="GhostEnemy2" parent="Enemies" instance=ExtResource("6_dwbse")]
 position = Vector2(160, 32)
+
+[node name="Bomb" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_yf0ba")
+
+[node name="Attack" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_oe8m4")
 
 [connection signal="item_used" from="Player" to="." method="_on_player_item_used"]
 [connection signal="moved" from="Player" to="." method="_on_player_moved"]
