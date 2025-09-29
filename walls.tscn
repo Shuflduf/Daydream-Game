@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxtxj8wn0ivdn"]
+[gd_scene load_steps=10 format=3 uid="uid://bxtxj8wn0ivdn"]
 
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="1_0ugm7"]
 [ext_resource type="Script" uid="uid://bcb0wtfjyaxjg" path="res://walls.gd" id="1_vqaso"]
@@ -13,6 +13,26 @@ texture_region_size = Vector2i(8, 8)
 tile_size = Vector2i(8, 8)
 sources/0 = SubResource("TileSetAtlasSource_0ugm7")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftpcs"]
+atlas = ExtResource("1_0ugm7")
+region = Rect2(8, 0, 4, 4)
+
+[sub_resource type="Curve" id="Curve_07yvr"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wse8f"]
+curve = SubResource("Curve_07yvr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_7i2ur"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 30.0
+damping_min = 93.479004
+damping_max = 93.479004
+scale_curve = SubResource("CurveTexture_wse8f")
+
 [node name="Walls" type="Node2D"]
 script = ExtResource("1_vqaso")
 
@@ -21,3 +41,11 @@ tile_set = SubResource("TileSet_0ugm7")
 metadata/_edit_horizontal_guides_ = [-66.0]
 
 [node name="Outline" parent="." instance=ExtResource("3_uuaxm")]
+
+[node name="BombParticles" type="GPUParticles2D" parent="."]
+emitting = false
+texture = SubResource("AtlasTexture_ftpcs")
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_7i2ur")

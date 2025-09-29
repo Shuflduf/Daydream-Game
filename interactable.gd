@@ -3,6 +3,7 @@ extends TileMapLayer
 
 signal explode_bomb(pos: Vector2i)
 
+const LABEL_OFFSET = Vector2(1.0, 0.0)
 const ATLAS = {
 	&"chest": Vector2i(2, 0),
 	&"sword": Vector2i(3, 0),
@@ -18,6 +19,8 @@ func _ready() -> void:
 	tiles = get_used_cells()
 
 func cycle():
+	for label in $BombLabels.get_children():
+		label.queue_free()
 	for bomb_pos in bombs:
 		bombs[bomb_pos] -= 1
 		var bomb_timer = bombs[bomb_pos]
@@ -25,6 +28,13 @@ func cycle():
 			erase_cell(bomb_pos)
 			tiles.erase(bomb_pos)
 			explode_bomb.emit(bomb_pos)
+			bombs.erase(bomb_pos)
+		else:
+			var new_label = $BaseLabel.duplicate()
+			new_label.visible = true
+			new_label.position = Vector2(bomb_pos*8) + LABEL_OFFSET
+			new_label.text = str(bombs[bomb_pos])
+			$BombLabels.add_child(new_label)
 
 func add_interactable(pos: Vector2i, id: StringName):
 	tiles.append(pos)

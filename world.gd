@@ -41,7 +41,8 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		#$Walls.tiles.erase(new_tile_pos)
 		#player.health.shift(-1)
 		player.fake_move()
-		$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
+		$Walls.remove_at(new_tile_pos)
+		#$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
 		$Walls.place_tiles()
 	elif new_tile_pos in $Interactable.tiles:
 		#player.cancel_move()
@@ -71,7 +72,11 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 			var length = sqrt((x*x)+(y*y))
 			if length > 2:
 				continue
-			$Walls.tiles.erase(pos + Vector2i(x, y))
+			var target_pos = pos + Vector2i(x, y)
+			#$Walls.tiles.erase(target_pos)
+			$Walls.remove_at(target_pos)
+			if player.tile_pos == target_pos:
+				player.health.shift(-2)
 	$Walls.place_tiles()
 
 
