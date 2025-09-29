@@ -36,7 +36,9 @@ func generate_rock(offset: Vector2i, diameter: float):
 
 func _on_player_moved(new_tile_pos: Vector2i) -> void:
 	var enemies = EnemyUtils.get_enemy_tiles()
-	if new_tile_pos in $Walls.tiles:
+	if new_tile_pos.y < 0 or new_tile_pos.y >= 8:
+		player.fake_move()
+	elif new_tile_pos in $Walls.tiles:
 		#player.cancel_move()
 		#$Walls.tiles.erase(new_tile_pos)
 		player.health.shift(-1)
