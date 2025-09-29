@@ -69,6 +69,7 @@ func get_collision_tiles() -> Array[Vector2i]:
 func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 	var explode_radius = 2.5
 	var ep = floori(explode_radius)
+	var enemies = EnemyUtils.get_enemy_tiles()
 	for x in range(-ep, ep+1):
 		for y in range(-ep, ep+1):
 			var length = sqrt((x*x)+(y*y))
@@ -78,6 +79,8 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 			$Walls.remove_at(target_pos)
 			if player.tile_pos == target_pos:
 				player.health.shift(-4)
+			elif enemies.has(target_pos):
+				enemies[target_pos].health.shift(-4)
 	$Walls.place_tiles()
 
 

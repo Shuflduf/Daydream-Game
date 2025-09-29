@@ -20,7 +20,8 @@ script = ExtResource("3_beoy7")
 max_health = 2
 metadata/_custom_type_script = "uid://bvqp67qek7aff"
 
-[node name="VisibleOnScreenEnabler2D" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 rect = Rect2(1, 1, 5, 5)
 
 [connection signal="die" from="Health" to="." method="_on_health_die"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_entered"]

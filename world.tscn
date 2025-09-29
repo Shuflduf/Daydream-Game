@@ -19,6 +19,7 @@ position_smoothing_speed = 20.0
 script = ExtResource("2_aqk2v")
 
 [node name="Player" parent="." instance=ExtResource("1_f3sb7")]
+position = Vector2(0, 24)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -100
@@ -46,6 +47,9 @@ tile_map_data = PackedByteArray("AAAJAAAAAAACAAAAAAAOAAcAAAACAAAAAAASAAMAAAACAAA
 
 [node name="GhostEnemy" parent="Enemies" instance=ExtResource("6_dwbse")]
 position = Vector2(104, 16)
+
+[node name="GhostEnemy2" parent="Enemies" instance=ExtResource("6_dwbse")]
+position = Vector2(160, 32)
 
 [connection signal="item_used" from="Player" to="." method="_on_player_item_used"]
 [connection signal="moved" from="Player" to="." method="_on_player_moved"]
