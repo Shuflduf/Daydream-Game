@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv573tmeitqw6"]
+[gd_scene load_steps=12 format=3 uid="uid://dv573tmeitqw6"]
 
 [ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://JetBrains.ttf" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://ctmx82mrcyv3t" path="res://main_menu.gd" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://sprites.png" id="2_7vrkn"]
+[ext_resource type="PackedScene" uid="uid://bydlvdo8wwmn" path="res://transition.tscn" id="3_fu7sn"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 bg_color = Color(0, 0, 0, 1)
@@ -40,6 +42,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jix8l")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
@@ -135,3 +138,6 @@ offset_top = 307.0
 offset_right = 1091.0
 offset_bottom = 450.0
 texture = SubResource("AtlasTexture_nlkkf")
+
+[node name="Transition" parent="." instance=ExtResource("3_fu7sn")]
+layout_mode = 1
