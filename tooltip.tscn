@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://myg80b6k1npu"]
+
+[ext_resource type="Script" uid="uid://yqm5t1b2ybqi" path="res://tooltip.gd" id="1_gwequ"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpm11"]
+size = Vector2(7, 7)
+
+[node name="Tooltip" type="Area2D"]
+collision_mask = 0
+script = ExtResource("1_gwequ")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3.5, 3.5)
+shape = SubResource("RectangleShape2D_dpm11")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

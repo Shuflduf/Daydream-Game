@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://bdq6tvblf0fml"]
+[gd_scene load_steps=4 format=3 uid="uid://bdq6tvblf0fml"]
 
+[ext_resource type="Script" uid="uid://bcorua1wc0mn7" path="res://testing.gd" id="1_co24e"]
 [ext_resource type="Texture2D" uid="uid://cttqoicjr6a76" path="res://icon.svg" id="1_qrja6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_feb8i"]
+size = Vector2(152, 150)
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -9,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+script = ExtResource("1_co24e")
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
 layout_mode = 1
@@ -18,14 +22,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
-handle_input_locally = false
-gui_disable_input = true
+physics_object_picking = true
+render_target_update_mode = 4
 
 [node name="Node2D" type="Node2D" parent="SubViewportContainer/SubViewport"]
 
 [node name="Icon" type="Sprite2D" parent="SubViewportContainer/SubViewport/Node2D"]
 position = Vector2(278, 264)
 texture = ExtResource("1_qrja6")
+
+[node name="Area2D" type="Area2D" parent="SubViewportContainer/SubViewport/Node2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SubViewportContainer/SubViewport/Node2D/Area2D"]
+position = Vector2(278, 267)
+shape = SubResource("RectangleShape2D_feb8i")
+
+[connection signal="mouse_entered" from="SubViewportContainer/SubViewport/Node2D/Area2D" to="." method="_on_area_2d_mouse_entered"]
