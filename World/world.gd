@@ -99,6 +99,7 @@ func level_end_sequence():
 	enabled = false
 	$Camera.update_focus(finish_pos+5)
 	ui.endscreen.raw_stats = finish_data
+	ui.endscreen.show()
 	await ui.endscreen.update_stats()
 	await ui.endscreen.show_challenges()
 	LevelHandler.unlock_next()

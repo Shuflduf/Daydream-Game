@@ -97,6 +97,7 @@ unique_name_in_owner = true
 [node name="EndScreen" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50

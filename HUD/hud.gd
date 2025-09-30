@@ -15,6 +15,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed(&"restart"):
 		get_tree().change_scene_to_file(scene_file_path)
 func _ready() -> void:
+	endscreen.hide()
 	transition.show()
 	transition.open()
 	transition.opened.connect(func(): world.enabled = true)
