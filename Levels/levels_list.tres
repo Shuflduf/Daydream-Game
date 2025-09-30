@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="LevelSet" load_steps=4 format=3 uid="uid://btb7pg4dnl1jx"]
+
+[ext_resource type="Script" uid="uid://0pv66qoprm85" path="res://Levels/level_info.gd" id="1_5nmrr"]
+[ext_resource type="Script" uid="uid://dut3mepuemg8r" path="res://Levels/levels_set.gd" id="2_unsoe"]
+
+[sub_resource type="Resource" id="Resource_5nmrr"]
+script = ExtResource("1_5nmrr")
+name = "main"
+unlocked = true
+metadata/_custom_type_script = "uid://0pv66qoprm85"
+
+[resource]
+script = ExtResource("2_unsoe")
+levels = Array[ExtResource("1_5nmrr")]([SubResource("Resource_5nmrr")])
+metadata/_custom_type_script = "uid://dut3mepuemg8r"

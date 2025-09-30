@@ -8,6 +8,12 @@ extends Control
 @onready var world: Node2D = %World
 @onready var endscreen: MarginContainer = %EndScreen
 
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed(&"next") and LevelHandler.has_next_unlocked():
+		LevelHandler.current_level += 1
+		get_tree().change_scene_to_file(scene_file_path)
+	elif event.is_action_pressed(&"restart"):
+		get_tree().change_scene_to_file(scene_file_path)
 func _ready() -> void:
 	transition.show()
 	transition.open()
