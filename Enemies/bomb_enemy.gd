@@ -16,6 +16,8 @@ func fake_move():
 
 
 func cycle():
+	if not enabled or exploded:
+		return
 	if can_move:
 		var target_pos = tile_pos - Vector2i(1, 0)
 		if target_pos == player.tile_pos:
@@ -32,6 +34,8 @@ func cycle():
 
 
 func explode():
+	if health.current <= 0:
+		return
 	exploded = true
 	queue_free()
 	EnemyUtils.bomb_enemy_exploded.emit(tile_pos)

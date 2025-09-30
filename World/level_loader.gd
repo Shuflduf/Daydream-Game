@@ -22,6 +22,7 @@ func save_into_selected():
 	
 func load_selected():
 	walls.base.tile_map_data = selected.wall_data
+	walls.register_current()
 	walls.place_tiles()
 	interactable.tile_map_data = selected.interactable_data
 	for enemy in enemies.get_children():

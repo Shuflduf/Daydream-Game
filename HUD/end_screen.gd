@@ -24,9 +24,16 @@ func update_stats():
 func show_challenges():
 	for child in challenges.get_children():
 		child.queue_free()
-	await add_challenge("No Damage", raw_stats["damage_taken"] <= 0)
-	await add_challenge("All Coins", raw_stats["coins_collected"] >= 3)
-	await add_challenge("No Mercy", raw_stats["enemies_left"] <= 0)
+	var passed_damage = raw_stats["damage_taken"] <= 0
+	var passed_coins = raw_stats["coins_collected"] >= 3
+	var passed_kill = raw_stats["enemies_left"] <= 0
+	var trophy_count = [passed_damage, passed_coins, passed_kill].filter(func(v): return v).size()
+	var current_level_info = LevelHandler.get_current_level_info()
+	if trophy_count > current_level_info.trophies_unlocked:
+		current_level_info.trophies_unlocked = trophy_count
+	await add_challenge("No Damage", passed_damage)
+	await add_challenge("All Coins", passed_coins)
+	await add_challenge("No Mercy", passed_kill)
 func activate_binds():
 	await get_tree().create_timer(0.5).timeout
 	binds.show()

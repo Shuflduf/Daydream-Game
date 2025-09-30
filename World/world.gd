@@ -69,6 +69,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		player.health.shift(-1)
 		player.fake_move()
 		finish_data["rock_eaten"] += 1
+		finish_data["damage_taken"] += 1
 		$Eat.play()
 		$Walls.remove_at(new_tile_pos)
 		#$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
@@ -100,6 +101,7 @@ func level_end_sequence():
 	ui.endscreen.raw_stats = finish_data
 	await ui.endscreen.update_stats()
 	await ui.endscreen.show_challenges()
+	LevelHandler.unlock_next()
 	await ui.endscreen.activate_binds()
 
 func get_collision_tiles() -> Array[Vector2i]:
