@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dv573tmeitqw6"]
+[gd_scene load_steps=13 format=3 uid="uid://dv573tmeitqw6"]
 
 [ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://Assets/JetBrains.ttf" id="1_06t4h"]
 [ext_resource type="Script" uid="uid://ctmx82mrcyv3t" path="res://Menus/main_menu.gd" id="1_jix8l"]
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="2_7vrkn"]
 [ext_resource type="PackedScene" uid="uid://bydlvdo8wwmn" path="res://Menus/transition.tscn" id="3_fu7sn"]
+[ext_resource type="AudioStream" uid="uid://cda7xlv3awjb6" path="res://Assets/Sounds/pickup.wav" id="5_cxdly"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
 bg_color = Color(0, 0, 0, 1)
@@ -142,3 +143,6 @@ texture = SubResource("AtlasTexture_nlkkf")
 [node name="Transition" parent="." instance=ExtResource("3_fu7sn")]
 layout_mode = 1
 offset_bottom = -84.0
+
+[node name="Action" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_cxdly")

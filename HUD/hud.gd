@@ -4,7 +4,10 @@ extends Control
 @onready var energy: PanelContainer = %Energy
 @onready var arrow: PanelContainer = %Arrow
 @onready var item_tooltips: Node = $ItemTooltips
+@onready var transition: ColorRect = $Transition
 
+func _ready() -> void:
+	transition.open(0.5)
 
 func set_item(first: bool, id: StringName):
 	$ItemTooltips.set_item(first, id)

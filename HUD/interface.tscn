@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ft4p3e207tyt"]
+[gd_scene load_steps=14 format=3 uid="uid://ft4p3e207tyt"]
 
 [ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://Assets/background.tres" id="1_pt1ru"]
 [ext_resource type="PackedScene" uid="uid://dd30axi4gohbt" path="res://World/world.tscn" id="1_rh14k"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://di3g6iy465jjn" path="res://HUD/energy_bar.gd" id="6_0noqu"]
 [ext_resource type="Script" uid="uid://bhqhjfhmlmut3" path="res://HUD/arrow.gd" id="7_pxv5b"]
 [ext_resource type="Script" uid="uid://d0lgfd0wmmnna" path="res://HUD/item_tooltips.gd" id="9_5ofep"]
+[ext_resource type="PackedScene" uid="uid://bydlvdo8wwmn" path="res://Menus/transition.tscn" id="10_s7atv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("3_pt1ru")
@@ -190,6 +191,11 @@ bbcode_enabled = true
 
 [node name="ItemTooltips" type="Node" parent="."]
 script = ExtResource("9_5ofep")
+
+[node name="Transition" parent="." instance=ExtResource("10_s7atv")]
+layout_mode = 1
+grow_horizontal = 1
+grow_vertical = 1
 
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer/TexOne" to="ItemTooltips" method="_on_tex_one_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer/TexOne" to="ItemTooltips" method="_on_tex_one_mouse_exited"]
