@@ -76,7 +76,7 @@ func interact(pos: Vector2i):
 				erase_cell(pos)
 				tiles.erase(pos)
 		&"bomb":
-			if player.accept_item(tile_id) and not bombs.has(pos):
+			if not bombs.has(pos) and player.accept_item(tile_id):
 				erase_cell(pos)
 				tiles.erase(pos)
 	print(tile_id)

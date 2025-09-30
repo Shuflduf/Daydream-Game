@@ -7,6 +7,8 @@ extends Node2D
 
 var tiles: Array[Vector2i]
 
+@onready var base: TileMapLayer = $Base
+
 
 func _ready() -> void:
 	tiles = $Base.get_used_cells()

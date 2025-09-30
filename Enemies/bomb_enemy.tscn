@@ -1,12 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://cc7gexdx2h3df"]
 
-[ext_resource type="Script" uid="uid://ce1potv0qnld0" path="res://bomb_enemy.gd" id="1_gsyo4"]
+[ext_resource type="Script" uid="uid://ce1potv0qnld0" path="res://Enemies/bomb_enemy.gd" id="1_gsyo4"]
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="1_h2kpn"]
 [ext_resource type="Script" uid="uid://bvqp67qek7aff" path="res://World/health.gd" id="2_nh1tc"]
 [ext_resource type="PackedScene" uid="uid://myg80b6k1npu" path="res://World/tooltip.tscn" id="3_eg3es"]
 
 [node name="BombEnemy" type="Node2D" groups=["Enemy"]]
 script = ExtResource("1_gsyo4")
+id = &"bomb"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_h2kpn")

@@ -4,6 +4,8 @@ extends Entity
 @warning_ignore("unused_signal")
 signal map_tiles_requested
 
+@export var id: StringName
+
 @onready var health: Health = $Health
 @onready var player = get_tree().get_first_node_in_group(&"Player")
 @onready var tooltip: Area2D = $Tooltip

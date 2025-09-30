@@ -1,5 +1,10 @@
 extends Node
 
+const ENEMY_INDEX = {
+	&"ghost": preload("res://Enemies/ghost_enemy.tscn"),
+	&"bomb": preload("res://Enemies/bomb_enemy.tscn"),
+}
+
 @warning_ignore("unused_signal")
 signal bomb_enemy_exploded(pos: Vector2i)
 @warning_ignore("unused_signal")

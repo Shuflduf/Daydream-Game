@@ -1,7 +1,7 @@
 extends Enemy
 
 var can_move = true
-
+var exploded = false
 
 func _ready() -> void:
 	super()
@@ -32,11 +32,14 @@ func cycle():
 
 
 func explode():
-	EnemyUtils.bomb_enemy_exploded.emit(tile_pos)
+	exploded = true
 	queue_free()
+	EnemyUtils.bomb_enemy_exploded.emit(tile_pos)
+	
 
 
 func _on_health_die() -> void:
-	queue_free()
 	tooltip.remove()
-	EnemyUtils.interactable_added.emit(tile_pos, &"bomb")
+	queue_free()
+	if not exploded:
+		EnemyUtils.interactable_added.emit(tile_pos, &"bomb")

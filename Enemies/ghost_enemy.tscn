@@ -7,6 +7,7 @@
 
 [node name="GhostEnemy" type="Node2D" groups=["Enemy"]]
 script = ExtResource("1_dpm11")
+id = &"ghost"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 z_index = 20
