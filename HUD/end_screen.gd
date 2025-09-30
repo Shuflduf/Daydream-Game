@@ -1,9 +1,11 @@
 extends MarginContainer
 
-@onready var stats: VBoxContainer = $HBoxContainer/Stats
-@onready var base_stat: HBoxContainer = $HBoxContainer/BaseStat
-@onready var base_challenge: HBoxContainer = $HBoxContainer/BaseChallenge
-@onready var challenges: VBoxContainer = $HBoxContainer/Challenges
+@onready var base_stat: HBoxContainer = $VBoxContainer/HBoxContainer/BaseStat
+@onready var stats: VBoxContainer = $VBoxContainer/HBoxContainer/Stats
+@onready var base_challenge: HBoxContainer = $VBoxContainer/HBoxContainer/BaseChallenge
+@onready var challenges: VBoxContainer = $VBoxContainer/HBoxContainer/Challenges
+@onready var binds: HBoxContainer = $VBoxContainer/Binds
+
 
 var raw_stats: Dictionary
 
@@ -25,7 +27,9 @@ func show_challenges():
 	await add_challenge("No Damage", raw_stats["damage_taken"] <= 0)
 	await add_challenge("All Coins", raw_stats["coins_collected"] >= 3)
 	await add_challenge("No Mercy", raw_stats["enemies_left"] <= 0)
-	
+func activate_binds():
+	await get_tree().create_timer(0.5).timeout
+	binds.show()
 
 func add_challenge(challenge_name: String, passed: bool):
 	await get_tree().create_timer(0.5).timeout

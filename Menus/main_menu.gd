@@ -4,6 +4,7 @@ extends Control
 var active = false
 
 func _ready() -> void:
+	transition.show()
 	transition.open(0.5)
 	transition.opened.connect(func(): active = true)
 	transition.closed.connect(func(): get_tree().change_scene_to_file("res://HUD/interface.tscn"))

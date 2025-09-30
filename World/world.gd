@@ -99,7 +99,8 @@ func level_end_sequence():
 	$Camera.update_focus(finish_pos+5)
 	ui.endscreen.raw_stats = finish_data
 	await ui.endscreen.update_stats()
-	ui.endscreen.show_challenges()
+	await ui.endscreen.show_challenges()
+	await ui.endscreen.activate_binds()
 
 func get_collision_tiles() -> Array[Vector2i]:
 	var all: Array[Vector2i] = []

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://ft4p3e207tyt"]
+[gd_scene load_steps=23 format=3 uid="uid://ft4p3e207tyt"]
 
 [ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://Assets/background.tres" id="1_pt1ru"]
 [ext_resource type="PackedScene" uid="uid://dd30axi4gohbt" path="res://World/world.tscn" id="1_rh14k"]
@@ -29,6 +29,10 @@ shader_parameter/enabled = false
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7atv"]
 atlas = ExtResource("3_pt1ru")
 region = Rect2(16, 32, 8, 8)
+
+[sub_resource type="LabelSettings" id="LabelSettings_sj3ig"]
+font = ExtResource("4_0noqu")
+font_size = 32
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("3_pt1ru")
@@ -99,52 +103,6 @@ theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 script = ExtResource("5_8q743")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
-layout_mode = 2
-theme_override_constants/separation = 50
-
-[node name="BaseStat" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
-visible = false
-layout_mode = 2
-
-[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseStat"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "Damage Taken"
-label_settings = SubResource("LabelSettings_s7atv")
-
-[node name="Value" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseStat"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_s7atv")
-
-[node name="Stats" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
-[node name="BaseChallenge" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-
-[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseChallenge"]
-layout_mode = 2
-size_flags_horizontal = 3
-text = "No Damage"
-label_settings = SubResource("LabelSettings_s7atv")
-
-[node name="Texture" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseChallenge"]
-material = SubResource("ShaderMaterial_sj3ig")
-layout_mode = 2
-texture = SubResource("AtlasTexture_s7atv")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Challenges" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-alignment = 1
-
 [node name="Reveal" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
 stream = ExtResource("8_ckxo8")
 
@@ -153,6 +111,81 @@ stream = ExtResource("10_yhwer")
 
 [node name="Success" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
 stream = ExtResource("11_sj3ig")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 50
+
+[node name="BaseStat" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer/BaseStat"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Damage Taken"
+label_settings = SubResource("LabelSettings_s7atv")
+
+[node name="Value" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer/BaseStat"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_s7atv")
+
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="BaseChallenge" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer/BaseChallenge"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No Damage"
+label_settings = SubResource("LabelSettings_s7atv")
+
+[node name="Texture" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer/BaseChallenge"]
+material = SubResource("ShaderMaterial_sj3ig")
+layout_mode = 2
+texture = SubResource("AtlasTexture_s7atv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Challenges" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Binds" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/Binds"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[R]estart"
+label_settings = SubResource("LabelSettings_sj3ig")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/Binds"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[N]ext"
+label_settings = SubResource("LabelSettings_sj3ig")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/VBoxContainer/Binds"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "[L]evels"
+label_settings = SubResource("LabelSettings_sj3ig")
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
