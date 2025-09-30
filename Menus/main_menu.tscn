@@ -141,3 +141,4 @@ texture = SubResource("AtlasTexture_nlkkf")
 
 [node name="Transition" parent="." instance=ExtResource("3_fu7sn")]
 layout_mode = 1
+offset_bottom = -84.0
