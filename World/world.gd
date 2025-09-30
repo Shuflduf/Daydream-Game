@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var player: Node2D = $Player
+@onready var enemies_parent: Node2D = $Enemies
 
 func cycle():
 	$Interactable.cycle()
@@ -9,6 +10,9 @@ func cycle():
 
 
 func _ready() -> void:
+	EnemyUtils.bomb_enemy_exploded.connect(detonate_bomb)
+	for enemy in enemies_parent.get_children():
+		enemy.map_tiles_requested.connect(func(): enemy.map_tiles = get_collision_tiles())
 	pass
 	#generate_rock(Vector2i(8, 4), 8.3)
 
@@ -64,13 +68,16 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 	
 
 func get_collision_tiles() -> Array[Vector2i]:
-	var all = []
+	var all: Array[Vector2i] = []
 	all.append_array($Walls.tiles)
 	all.append_array($Interactable.tiles)
 	return all
 
 
 func _on_interactable_explode_bomb(pos: Vector2i) -> void:
+	detonate_bomb(pos)
+
+func detonate_bomb(pos: Vector2i):
 	var explode_radius = 2.5
 	var ep = floori(explode_radius)
 	var enemies = EnemyUtils.get_enemy_tiles()
@@ -87,7 +94,6 @@ func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 				enemies[target_pos].health.shift(-4)
 	$Walls.place_tiles()
 	$Bomb.play()
-
 
 func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 	var target_tile = player.tile_pos + face_dir
