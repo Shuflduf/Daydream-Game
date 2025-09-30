@@ -8,7 +8,8 @@ const ATLAS = {
 	&"chest": Vector2i(2, 0),
 	&"sword": Vector2i(3, 0),
 	&"bomb": Vector2i(1, 2),
-	&"potion": Vector2i(2, 3)
+	&"potion": Vector2i(2, 3),
+	&"coin": Vector2i(1, 4),
 }
 
 var bombs: Dictionary[Vector2i, int]
@@ -79,6 +80,10 @@ func interact(pos: Vector2i):
 			if not bombs.has(pos) and player.accept_item(tile_id):
 				erase_cell(pos)
 				tiles.erase(pos)
+		&"coin":
+			pickup_particles(pos, tile_id)
+			erase_cell(pos)
+			tiles.erase(pos)
 	print(tile_id)
 
 
