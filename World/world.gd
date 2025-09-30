@@ -3,6 +3,7 @@ extends Node2D
 @onready var player: Node2D = $Player
 @onready var enemies_parent: Node2D = $Enemies
 
+
 func cycle():
 	$Interactable.cycle()
 	for enemy in get_tree().get_nodes_in_group(&"Enemy"):
@@ -66,7 +67,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		player.actually_move()
 		$Camera.update_focus(new_tile_pos.x)
 	cycle()
-	
+
 
 func get_collision_tiles() -> Array[Vector2i]:
 	var all: Array[Vector2i] = []
@@ -78,13 +79,14 @@ func get_collision_tiles() -> Array[Vector2i]:
 func _on_interactable_explode_bomb(pos: Vector2i) -> void:
 	detonate_bomb(pos)
 
+
 func detonate_bomb(pos: Vector2i):
 	var explode_radius = 2.5
 	var ep = floori(explode_radius)
 	var enemies = EnemyUtils.get_enemy_tiles()
-	for x in range(-ep, ep+1):
-		for y in range(-ep, ep+1):
-			var length = sqrt((x*x)+(y*y))
+	for x in range(-ep, ep + 1):
+		for y in range(-ep, ep + 1):
+			var length = sqrt((x * x) + (y * y))
 			if length > explode_radius:
 				continue
 			var target_pos = pos + Vector2i(x, y)
@@ -95,6 +97,7 @@ func detonate_bomb(pos: Vector2i):
 				enemies[target_pos].health.shift(-4)
 	$Walls.place_tiles()
 	$Bomb.play()
+
 
 func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 	var target_tile = player.tile_pos + face_dir

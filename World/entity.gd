@@ -12,6 +12,7 @@ func _update_position():
 	tween.tween_property(self, ^"position", Vector2(tile_pos * 8), 0.1)
 	#position = Vector2(tile_pos * 8)
 
+
 func bump(dir: Vector2i):
 	var tween = get_tree().create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CIRC)
 	tween.tween_property(self, ^"position", position + Vector2(dir), 0.05)

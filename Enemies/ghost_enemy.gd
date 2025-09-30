@@ -2,9 +2,11 @@ extends Enemy
 
 var can_move = true
 
+
 func _ready() -> void:
 	super()
 	tooltip.data["name"] = "Gast"
+
 
 func cycle():
 	if not enabled:
@@ -20,7 +22,7 @@ func cycle():
 			else:
 				wish_position.x += signi(target_vec.x)
 				can_move = false
-				
+
 		else:
 			can_move = true
 	if wish_position not in EnemyUtils.get_enemy_tiles():

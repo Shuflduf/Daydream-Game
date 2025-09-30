@@ -5,6 +5,7 @@ extends Control
 @onready var arrow: PanelContainer = %Arrow
 @onready var item_tooltips: Node = $ItemTooltips
 
+
 func set_item(first: bool, id: StringName):
 	$ItemTooltips.set_item(first, id)
 	var tile_pos: Vector2i
@@ -15,6 +16,7 @@ func set_item(first: bool, id: StringName):
 	var atlas_pos = Vector2(tile_pos * 8)
 	var target_tex = %TexOne if first else %TexTwo
 	target_tex.texture.region.position = atlas_pos
+
 
 func set_tooltip(data: Dictionary[String, String]):
 	%TooltipLabel.text = ""

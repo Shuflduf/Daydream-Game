@@ -11,14 +11,18 @@ signal map_tiles_requested
 var enabled = false
 var map_tiles: Array[Vector2i]
 
+
 func _ready() -> void:
 	tooltip.data["health"] = str(health.current)
+
 
 func cycle():
 	return
 
+
 func fake_move():
 	bump(-player.last_move)
+
 
 func _on_health_die() -> void:
 	queue_free()

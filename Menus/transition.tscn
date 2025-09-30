@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://pe75fxac66qc" path="res://Menus/transition.gd" id="1_2gi1b"]
 [ext_resource type="AudioStream" uid="uid://b4fa4fqc20u3s" path="res://Assets/Sounds/transition.wav" id="2_5wlkw"]
-[ext_resource type="AudioStream" uid="uid://cda7xlv3awjb6" path="res://Assets/Sounds/pickup.wav" id="3_xp4w1"]
+[ext_resource type="AudioStream" uid="uid://dpi76qxhxwfca" path="res://Assets/Sounds/chest.wav" id="3_xp4w1"]
 
 [node name="Transition" type="ColorRect"]
 anchors_preset = 15

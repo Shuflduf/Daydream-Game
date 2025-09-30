@@ -16,8 +16,10 @@ var tiles: Array[Vector2i]
 
 @onready var player = get_tree().get_first_node_in_group(&"Player")
 
+
 func _ready() -> void:
 	tiles = get_used_cells()
+
 
 func cycle():
 	for label in $BombLabels.get_children():
@@ -33,33 +35,37 @@ func cycle():
 		else:
 			add_label(bomb_pos)
 			bomb_sound(bomb_timer)
-			
+
 
 func bomb_sound(timer: int):
 	$Bomb.pitch_scale = remap(timer, 1.0, 3.0, 0.5, 1.0)
 	$Bomb.play()
 
+
 func add_label(pos: Vector2i):
 	var new_label = $BaseLabel.duplicate()
 	new_label.visible = true
-	new_label.position = Vector2(pos*8) + LABEL_OFFSET
+	new_label.position = Vector2(pos * 8) + LABEL_OFFSET
 	new_label.text = str(bombs[pos])
 	$BombLabels.add_child(new_label)
+
 
 func add_interactable(pos: Vector2i, id: StringName):
 	tiles.erase(pos)
 	tiles.append(pos)
 	set_cell(pos, 0, ATLAS[id])
 
+
 func trigger_bomb(pos: Vector2i):
 	bombs[pos] = 3
 	add_label(pos)
 	bomb_sound(3)
 
+
 func interact(pos: Vector2i):
 	var tile_id = get_cell_tile_data(pos).get_custom_data("id")
 	#tiles.erase(pos)
-	
+
 	match tile_id:
 		&"chest":
 			$Chest.play()
@@ -74,6 +80,7 @@ func interact(pos: Vector2i):
 				erase_cell(pos)
 				tiles.erase(pos)
 	print(tile_id)
+
 
 func pickup_particles(pos: Vector2i, id: StringName):
 	var new_particles = $GrabParticles.duplicate()

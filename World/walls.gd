@@ -7,8 +7,11 @@ extends Node2D
 
 var tiles: Array[Vector2i]
 
+
 func _ready() -> void:
 	tiles = $Base.get_used_cells()
+
+
 #	reset()
 
 
@@ -17,12 +20,14 @@ func reset():
 	for tile in $Base.get_used_cells():
 		$Base.erase_cell(tile)
 
+
 func place_tiles():
 	for tile in $Base.get_used_cells():
 		$Base.erase_cell(tile)
 	for tile in tiles:
 		$Base.set_cell(tile, 0, Vector2i(1, 0))
 	_generate_outlines()
+
 
 func remove_at(pos: Vector2i):
 	var index = tiles.find(pos)

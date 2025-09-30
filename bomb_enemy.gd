@@ -1,17 +1,19 @@
 extends Enemy
 
-
 var can_move = true
+
 
 func _ready() -> void:
 	super()
 	tooltip.data["name"] = "Bob"
+
 
 func fake_move():
 	if player.last_move == Vector2i(-1, 0):
 		explode()
 	else:
 		bump(-player.last_move)
+
 
 func cycle():
 	if can_move:
@@ -28,9 +30,11 @@ func cycle():
 	else:
 		can_move = true
 
+
 func explode():
 	EnemyUtils.bomb_enemy_exploded.emit(tile_pos)
 	queue_free()
+
 
 func _on_health_die() -> void:
 	queue_free()

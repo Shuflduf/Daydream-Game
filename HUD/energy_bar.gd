@@ -8,15 +8,18 @@ extends PanelContainer
 @export var energy = 8
 @export var current_energy = 2
 
+
 func _ready() -> void:
 	create_bars()
 	update_bars()
+
 
 func create_bars():
 	for bar in %EnergyContainer.get_children():
 		bar.queue_free()
 	for i in energy:
 		%EnergyContainer.add_child(%EnergyBase.duplicate())
+
 
 func update_bars():
 	for bar in %EnergyContainer.get_children():

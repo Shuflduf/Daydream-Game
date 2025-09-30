@@ -18,6 +18,7 @@ const DIRS = {
 	&"right": Vector2i(1, 0),
 }
 
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"item_one"):
 		use_item(true)
@@ -28,7 +29,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 			last_move = DIRS[dir]
 			ui.arrow.change_direction(atan2(last_move.x, -last_move.y))
 			moved.emit(tile_pos + DIRS[dir])
-			
+
 			#tile_pos += DIRS[dir]
 			if dir == &"left":
 				$Sprite.flip_h = true
@@ -36,12 +37,15 @@ func _unhandled_key_input(event: InputEvent) -> void:
 				$Sprite.flip_h = false
 			break
 
+
 func actually_move():
 	$Walk.play()
 	tile_pos += last_move
 
+
 func fake_move():
 	bump(last_move)
+
 
 func accept_item(id: StringName) -> bool:
 	if item_one.is_empty():
@@ -56,8 +60,10 @@ func accept_item(id: StringName) -> bool:
 		return true
 	return false
 
+
 func cancel_move():
 	tile_pos -= last_move
+
 
 func reset_item(first: bool):
 	ui.set_item(first, &"")
@@ -66,26 +72,30 @@ func reset_item(first: bool):
 	else:
 		item_two = &""
 
+
 func use_item(first: bool):
 	var target_id = item_one if first else item_two
 	item_used.emit(last_move, target_id)
 	reset_item(first)
 	#match target_id:
-		#&"sword":
-			#
-			#print(tile_in_front)
-			#reset_item(first)
-			#var enemies = EnemyUtils.get_enemy_tiles()
-			#if enemies.has(tile_in_front):
-				#enemies[tile_in_front].health.shift(-3)
-				#moved.emit(tile_pos)
-			#else:
-				#var t = last_move
-				#last_move = Vector2i.ZERO
-				#moved.emit(tile_in_front)
-				#last_move = t
+	#&"sword":
+	#
+	#print(tile_in_front)
+	#reset_item(first)
+	#var enemies = EnemyUtils.get_enemy_tiles()
+	#if enemies.has(tile_in_front):
+	#enemies[tile_in_front].health.shift(-3)
+	#moved.emit(tile_pos)
+	#else:
+	#var t = last_move
+	#last_move = Vector2i.ZERO
+	#moved.emit(tile_in_front)
+	#last_move = t
+
+
 func heal():
 	$Heal.play()
+
 
 func _on_health_changed(new_health: int) -> void:
 	ui.energy.current_energy = new_health
