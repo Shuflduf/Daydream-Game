@@ -20,8 +20,10 @@ var tiles: Array[Vector2i]
 
 
 func _ready() -> void:
-	tiles = get_used_cells()
+	register_current()
 
+func register_current():
+	tiles = get_used_cells()
 
 func cycle():
 	for label in $BombLabels.get_children():

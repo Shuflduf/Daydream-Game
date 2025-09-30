@@ -9,6 +9,13 @@ extends Node
 @export_tool_button("Save") var sis = save_into_selected
 @export_tool_button("Load") var ls = load_selected
 
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		var level_name = LevelHandler.get_current_level_info().name
+		var level_path = "res://Levels/%s.tres" % level_name
+		selected = load(level_path)
+		load_selected()
+
 
 func save_into_selected():
 	#print(selected.wall_data)
@@ -25,8 +32,9 @@ func load_selected():
 	walls.register_current()
 	walls.place_tiles()
 	interactable.tile_map_data = selected.interactable_data
+	interactable.register_current()
 	for enemy in enemies.get_children():
-		enemy.queue_free()
+		enemy.free()
 	for enemy_pos in selected.enemy_data:
 		var id = selected.enemy_data[enemy_pos]
 		var new_enemy = EnemyUtils.ENEMY_INDEX[id].instantiate()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://dd30axi4gohbt"]
+[gd_scene load_steps=20 format=4 uid="uid://dd30axi4gohbt"]
 
 [ext_resource type="PackedScene" uid="uid://db4cc18hdvu45" path="res://Player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://d3juvjra20lao" path="res://World/world.gd" id="1_tlwt5"]
@@ -14,6 +14,7 @@
 [ext_resource type="Resource" uid="uid://c6rdc5yxkohof" path="res://Levels/tutorial.tres" id="11_lo5ox"]
 [ext_resource type="Script" uid="uid://bu1rldo4ud10" path="res://World/level_loader.gd" id="12_h2aik"]
 [ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://Assets/JetBrains.ttf" id="14_awrha"]
+[ext_resource type="Script" uid="uid://dmn6e7c2cffop" path="res://World/tutorial_text.gd" id="14_f23eu"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_oe8m4"]
 random_pitch = 1.5
@@ -31,6 +32,7 @@ streams_count = 1
 stream_0/stream = ExtResource("9_oe8m4")
 
 [sub_resource type="LabelSettings" id="LabelSettings_f23eu"]
+line_spacing = -2.0
 font = ExtResource("14_awrha")
 font_size = 4
 
@@ -47,7 +49,7 @@ position_smoothing_speed = 20.0
 script = ExtResource("2_aqk2v")
 
 [node name="Player" parent="." instance=ExtResource("1_f3sb7")]
-position = Vector2(184, 24)
+position = Vector2(0, 24)
 
 [node name="Walls" parent="." instance=ExtResource("2_fj7yv")]
 
@@ -100,6 +102,7 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 mouse_filter = 2
+script = ExtResource("14_f23eu")
 
 [node name="Label" type="Label" parent="TutorialText"]
 layout_mode = 0
@@ -124,7 +127,8 @@ offset_left = 168.0
 offset_right = 208.0
 offset_bottom = 23.0
 text = "Hover over
-enemies for info"
+enemies or held
+items for info"
 label_settings = SubResource("LabelSettings_f23eu")
 
 [node name="Label4" type="Label" parent="TutorialText"]
@@ -141,6 +145,14 @@ offset_left = 328.0
 offset_right = 379.0
 offset_bottom = 23.0
 text = "Collect all the Coins"
+label_settings = SubResource("LabelSettings_f23eu")
+
+[node name="Label6" type="Label" parent="TutorialText"]
+layout_mode = 0
+offset_left = 456.0
+offset_right = 507.0
+offset_bottom = 23.0
+text = "Get all the Trophies"
 label_settings = SubResource("LabelSettings_f23eu")
 
 [connection signal="item_used" from="Player" to="." method="_on_player_item_used"]
