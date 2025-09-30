@@ -51,12 +51,10 @@ func accept_item(id: StringName) -> bool:
 	if item_one.is_empty():
 		item_one = id
 		ui.set_item(true, id)
-		$Pickup.play()
 		return true
 	elif item_two.is_empty():
 		item_two = id
 		ui.set_item(false, id)
-		$Pickup.play()
 		return true
 	return false
 

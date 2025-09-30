@@ -74,16 +74,19 @@ func interact(pos: Vector2i):
 			set_cell(pos, 0, ATLAS[&"sword"])
 		&"sword", &"potion":
 			if player.accept_item(tile_id):
+				$Pickup.play()
 				erase_cell(pos)
 				tiles.erase(pos)
 		&"bomb":
 			if not bombs.has(pos) and player.accept_item(tile_id):
+				$Pickup.play()
 				erase_cell(pos)
 				tiles.erase(pos)
 		&"coin":
 			pickup_particles(pos, tile_id)
 			erase_cell(pos)
 			tiles.erase(pos)
+			$Pickup.play()
 	print(tile_id)
 
 
