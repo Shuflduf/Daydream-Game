@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc7gexdx2h3df"]
+
+[ext_resource type="Script" uid="uid://ce1potv0qnld0" path="res://bomb_enemy.gd" id="1_gsyo4"]
+[ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="1_h2kpn"]
+[ext_resource type="Script" uid="uid://bvqp67qek7aff" path="res://World/health.gd" id="2_nh1tc"]
+[ext_resource type="PackedScene" uid="uid://myg80b6k1npu" path="res://World/tooltip.tscn" id="3_eg3es"]
+
+[node name="BombEnemy" type="Node2D" groups=["Enemy"]]
+script = ExtResource("1_gsyo4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_h2kpn")
+centered = false
+region_enabled = true
+region_rect = Rect2(0, 32, 8, 8)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("2_nh1tc")
+metadata/_custom_type_script = "uid://bvqp67qek7aff"
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(1, 1, 5, 5)
+
+[node name="Tooltip" parent="." instance=ExtResource("3_eg3es")]
+
+[connection signal="changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_screen_entered"]

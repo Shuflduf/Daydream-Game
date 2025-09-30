@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cu6viuvsf4kmw"]
 
-[ext_resource type="Script" uid="uid://dw4mhebrxnux0" path="res://Enemies/ghost_enemy.gd" id="1_dpm11"]
+[ext_resource type="Script" uid="uid://cbosd7n6yg5vd" path="res://Enemies/ghost_enemy.gd" id="1_dpm11"]
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="1_x1jlk"]
 [ext_resource type="Script" uid="uid://bvqp67qek7aff" path="res://World/health.gd" id="3_beoy7"]
 [ext_resource type="PackedScene" uid="uid://myg80b6k1npu" path="res://World/tooltip.tscn" id="4_beoy7"]
@@ -8,7 +8,7 @@
 [node name="GhostEnemy" type="Node2D" groups=["Enemy"]]
 script = ExtResource("1_dpm11")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
 z_index = 20
 texture = ExtResource("1_x1jlk")
 centered = false

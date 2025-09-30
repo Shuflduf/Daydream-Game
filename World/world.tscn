@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dd30axi4gohbt"]
+[gd_scene load_steps=15 format=4 uid="uid://dd30axi4gohbt"]
 
 [ext_resource type="PackedScene" uid="uid://db4cc18hdvu45" path="res://Player/player.tscn" id="1_f3sb7"]
 [ext_resource type="Script" uid="uid://d3juvjra20lao" path="res://World/world.gd" id="1_tlwt5"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bxtxj8wn0ivdn" path="res://World/walls.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://ujivl2lh7elw" path="res://World/interactable.tscn" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://cu6viuvsf4kmw" path="res://Enemies/ghost_enemy.tscn" id="6_dwbse"]
+[ext_resource type="PackedScene" uid="uid://cc7gexdx2h3df" path="res://bomb_enemy.tscn" id="7_lo5ox"]
 [ext_resource type="AudioStream" uid="uid://rdo7chr04f33" path="res://Assets/Sounds/explosion.wav" id="7_yf0ba"]
 [ext_resource type="AudioStream" uid="uid://div4da4xnsyfl" path="res://Assets/Sounds/hit.wav" id="8_eidgh"]
 [ext_resource type="AudioStream" uid="uid://cvs7awpwtov0e" path="res://Assets/Sounds/sword.wav" id="9_oe8m4"]
@@ -49,7 +50,7 @@ tile_map_data = PackedByteArray("AAAHAAAAAAABAAAAAAAHAAEAAAABAAAAAAAHAAIAAAABAAA
 tile_map_data = PackedByteArray("AAAcAAEAAAAAAAEAAAAYAAAAAAABAAEAAAAZAAAAAAABAAEAAgAaAAEAAAABAAEAAQAaAAIAAAAAAAIAAwAbAAIAAAAAAAIAAQAbAAMAAAACAAEAAQAbAAQAAAABAAEAAwAZAAQAAAABAAEAAQAZAAUAAAACAAEAAQAZAAYAAAACAAEAAQAbAAcAAAABAAEAAgAaAAcAAAACAAEAAAAZAAcAAAAAAAIAAwASAAIAAAACAAEAAAATAAIAAAAAAAIAAQATAAMAAAACAAEAAQATAAQAAAACAAEAAQATAAUAAAABAAEAAwASAAYAAAABAAEAAgAQAAEAAAADAAEAAwAQAAIAAAADAAEAAwAQAAMAAAADAAEAAwAQAAQAAAADAAEAAwAQAAUAAAADAAEAAwAQAAYAAAADAAEAAwAQAAcAAAABAAEAAwARAAYAAAADAAEAAgARAAUAAAADAAEAAQARAAQAAAADAAEAAQARAAMAAAADAAEAAQARAAIAAAADAAMAAAARAAEAAAAAAAIAAQAQAAAAAAABAAEAAQAGAAcAAAABAAEAAAANAAcAAAABAAEAAgAIAAUAAAABAAEAAAAJAAcAAAACAAEAAAAIAAcAAAACAAEAAAAKAAcAAAACAAEAAAALAAcAAAACAAEAAAAMAAcAAAADAAEAAgAMAAYAAAABAAEAAQAKAAUAAAABAAEAAgAJAAUAAAACAAEAAAAHAAcAAAACAAEAAAALAAAAAAABAAEAAQALAAEAAAACAAEAAQALAAIAAAAAAAIAAgAKAAIAAAACAAEAAAAJAAIAAAACAAEAAAAIAAIAAAACAAEAAAAHAAIAAAAAAAIAAwAHAAEAAAACAAEAAQAHAAAAAAABAAEAAQA=")
 
 [node name="Interactable" parent="." instance=ExtResource("5_036b0")]
-tile_map_data = PackedByteArray("AAAJAAAAAAACAAAAAAAOAAcAAAACAAAAAAASAAMAAAACAAAAAAASAAUAAAABAAIAAAAdAAAAAAACAAAAAAAGAAQAAAACAAMAAAA=")
+tile_map_data = PackedByteArray("AAAJAAAAAAACAAAAAAAOAAcAAAACAAAAAAASAAMAAAACAAAAAAASAAUAAAABAAIAAAAdAAAAAAACAAAAAAAGAAQAAAACAAMAAAAEAAUAAAABAAIAAAA=")
 
 [node name="Enemies" type="Node2D" parent="."]
 
@@ -58,6 +59,9 @@ position = Vector2(104, 16)
 
 [node name="GhostEnemy2" parent="Enemies" instance=ExtResource("6_dwbse")]
 position = Vector2(160, 32)
+
+[node name="BombEnemy" parent="Enemies" instance=ExtResource("7_lo5ox")]
+position = Vector2(56, 48)
 
 [node name="Bomb" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_yf0ba")
