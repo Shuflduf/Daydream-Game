@@ -14,6 +14,7 @@ func _ready() -> void:
 		var level_name = LevelHandler.get_current_level_info().name
 		var level_path = "res://Levels/%s.tres" % level_name
 		selected = load(level_path)
+		print(level_path)
 		load_selected()
 
 
@@ -25,6 +26,7 @@ func save_into_selected():
 	for enemy in enemies.get_children():
 		selected.enemy_data[Vector2i(enemy.position / 8.0)] = enemy.id
 	print(selected.enemy_data)
+	ResourceSaver.save(selected)
 	
 	
 func load_selected():
@@ -32,7 +34,8 @@ func load_selected():
 	walls.register_current()
 	walls.place_tiles()
 	interactable.tile_map_data = selected.interactable_data
-	interactable.register_current()
+	if not Engine.is_editor_hint():
+		interactable.register_current()
 	for enemy in enemies.get_children():
 		enemy.free()
 	for enemy_pos in selected.enemy_data:
