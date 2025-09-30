@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func fake_move():
-	if player.last_move == Vector2i(-1, 0):
+	if player.last_move == Vector2i(1, 0):
 		explode()
 	else:
 		bump(-player.last_move)
