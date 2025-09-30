@@ -13,6 +13,12 @@ var tiles: Array[Vector2i]
 func _ready() -> void:
 	tiles = $Base.get_used_cells()
 
+func get_rightmost() -> int:
+	var furthest = 0
+	for tile in tiles:
+		if tile.x > furthest:
+			furthest = tile.x
+	return furthest
 
 #	reset()
 

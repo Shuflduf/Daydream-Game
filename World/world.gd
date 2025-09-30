@@ -2,7 +2,9 @@ extends Node2D
 
 @onready var player: Node2D = $Player
 @onready var enemies_parent: Node2D = $Enemies
+@onready var finish_line: Line2D = $FinishLine
 
+var finish_pos: int
 
 func cycle():
 	$Interactable.cycle()
@@ -15,7 +17,8 @@ func _ready() -> void:
 	EnemyUtils.interactable_added.connect($Interactable.add_interactable)
 	for enemy in enemies_parent.get_children():
 		enemy.map_tiles_requested.connect(func(): enemy.map_tiles = get_collision_tiles())
-	pass
+	finish_pos = $Walls.get_rightmost() + 4
+	finish_line.position.x = finish_pos * 8.0
 	#generate_rock(Vector2i(8, 4), 8.3)
 
 
@@ -66,8 +69,13 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 	else:
 		player.actually_move()
 		$Camera.update_focus(new_tile_pos.x)
+		if new_tile_pos.x >= finish_pos:
+			level_end_sequence()
 	cycle()
 
+
+func level_end_sequence():
+	print("AAAAAAAAAAa")
 
 func get_collision_tiles() -> Array[Vector2i]:
 	var all: Array[Vector2i] = []
