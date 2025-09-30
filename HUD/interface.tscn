@@ -210,7 +210,7 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer"]
 layout_mode = 2
-text = "[ K ]"
+text = "[ J ]"
 label_settings = SubResource("LabelSettings_sweqy")
 horizontal_alignment = 1
 
@@ -232,7 +232,7 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/VBoxContainer/ItemTwo/VBoxContainer"]
 layout_mode = 2
-text = "[ L ]"
+text = "[ K ]"
 label_settings = SubResource("LabelSettings_sweqy")
 horizontal_alignment = 1
 
@@ -315,6 +315,9 @@ visible = false
 layout_mode = 1
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="Action" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_sj3ig")
 
 [connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer/TexOne" to="ItemTooltips" method="_on_tex_one_mouse_entered"]
 [connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/VBoxContainer/ItemOne/VBoxContainer/TexOne" to="ItemTooltips" method="_on_tex_one_mouse_exited"]

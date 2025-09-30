@@ -130,7 +130,7 @@ func detonate_bomb(pos: Vector2i):
 			$Walls.remove_at(target_pos)
 			if player.tile_pos == target_pos:
 				player.health.shift(-4)
-				finish_data["rock_eaten"] += 4
+				finish_data["damage_taken"] += 4
 			elif enemies.has(target_pos):
 				enemies[target_pos].health.shift(-4)
 	$Walls.place_tiles()

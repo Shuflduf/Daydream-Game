@@ -118,7 +118,7 @@ offset_left = 72.0
 offset_right = 112.0
 offset_bottom = 23.0
 text = "Use items with
-[ K ] or [ L ]"
+[ J ] or [ K ]"
 label_settings = SubResource("LabelSettings_f23eu")
 
 [node name="Label3" type="Label" parent="TutorialText"]

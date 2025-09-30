@@ -37,6 +37,7 @@ func show_challenges():
 func activate_binds():
 	await get_tree().create_timer(0.5).timeout
 	binds.show()
+	$Reveal.play()
 
 func add_challenge(challenge_name: String, passed: bool):
 	await get_tree().create_timer(0.5).timeout

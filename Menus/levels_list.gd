@@ -7,8 +7,10 @@ func _ready() -> void:
 		var new_entry = %LevelBase.duplicate()
 		%LevelsContainer.add_child(new_entry)
 		new_entry.show()
+		
 		new_entry.label.text = str(i + 1)
 		if level_info.unlocked:
+			new_entry.gui_input.connect(_on_entry_gui_input.bind(i))
 			new_entry.mouse_default_cursor_shape = CursorShape.CURSOR_POINTING_HAND
 			for panel in new_entry.panels.get_children():
 				panel.modulate = Color.WHITE
@@ -20,3 +22,9 @@ func _ready() -> void:
 		else:
 			new_entry.modulate = Color("3a3277")
 		
+func _on_entry_gui_input(event: InputEvent, level_index: int):
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed():
+		$Selected.play()
+		await $Selected.finished
+		LevelHandler.current_level = level_index
+		get_tree().change_scene_to_file("res://HUD/interface.tscn")

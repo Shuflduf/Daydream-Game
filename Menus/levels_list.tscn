@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvuewo83vtehr"]
+[gd_scene load_steps=6 format=3 uid="uid://cvuewo83vtehr"]
 
 [ext_resource type="Script" uid="uid://d3b4mdnann22f" path="res://Menus/levels_list.gd" id="1_6luqe"]
 [ext_resource type="PackedScene" uid="uid://bvokm65j5lie3" path="res://Menus/level_list_base.tscn" id="2_un1bu"]
+[ext_resource type="AudioStream" uid="uid://cda7xlv3awjb6" path="res://Assets/Sounds/pickup.wav" id="3_un1bu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i576r"]
 bg_color = Color(0, 0, 0, 1)
@@ -66,3 +67,6 @@ alignment = 1
 [node name="LevelBase" parent="MarginContainer/PanelContainer/MarginContainer/LevelsContainer" instance=ExtResource("2_un1bu")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="Selected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_un1bu")

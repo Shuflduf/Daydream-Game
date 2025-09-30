@@ -19,5 +19,6 @@ func _input(event: InputEvent) -> void:
 		$Action.play()
 	elif event.is_action_pressed(&"levels"):
 		$Action.play()
+		get_tree().change_scene_to_file("res://Menus/levels_list.tscn")
 	elif event.is_action_pressed(&"quit"):
 		get_tree().quit()

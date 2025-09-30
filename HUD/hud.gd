@@ -11,12 +11,21 @@ extends Control
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"next") and LevelHandler.has_next_unlocked():
 		LevelHandler.current_level += 1
+		$Action.play()
+		await $Action.finished
 		get_tree().change_scene_to_file(scene_file_path)
 	elif event.is_action_pressed(&"restart"):
+		$Action.play()
+		await $Action.finished
 		get_tree().change_scene_to_file(scene_file_path)
+	elif event.is_action_pressed(&"levels"):
+		$Action.play()
+		await $Action.finished
+		get_tree().change_scene_to_file("res://Menus/levels_list.tscn")
 func _ready() -> void:
 	endscreen.hide()
 	transition.show()
+	await get_tree().create_timer(0.2).timeout
 	transition.open()
 	transition.opened.connect(func(): world.enabled = true)
 
