@@ -11,6 +11,7 @@ func cycle():
 
 func _ready() -> void:
 	EnemyUtils.bomb_enemy_exploded.connect(detonate_bomb)
+	EnemyUtils.interactable_added.connect($Interactable.add_interactable)
 	for enemy in enemies_parent.get_children():
 		enemy.map_tiles_requested.connect(func(): enemy.map_tiles = get_collision_tiles())
 	pass

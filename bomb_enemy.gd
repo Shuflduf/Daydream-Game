@@ -31,3 +31,8 @@ func cycle():
 func explode():
 	EnemyUtils.bomb_enemy_exploded.emit(tile_pos)
 	queue_free()
+
+func _on_health_die() -> void:
+	queue_free()
+	tooltip.remove()
+	EnemyUtils.interactable_added.emit(tile_pos, &"bomb")

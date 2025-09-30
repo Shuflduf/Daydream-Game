@@ -16,6 +16,7 @@ region_rect = Rect2(0, 32, 8, 8)
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("2_nh1tc")
+max_health = 2
 metadata/_custom_type_script = "uid://bvqp67qek7aff"
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
