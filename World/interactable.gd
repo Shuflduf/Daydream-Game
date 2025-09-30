@@ -47,6 +47,7 @@ func add_label(pos: Vector2i):
 	$BombLabels.add_child(new_label)
 
 func add_interactable(pos: Vector2i, id: StringName):
+	tiles.erase(pos)
 	tiles.append(pos)
 	set_cell(pos, 0, ATLAS[id])
 

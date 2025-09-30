@@ -119,6 +119,7 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 				player.health.shift(2)
 			cycle()
 		&"bomb":
+			#if $Interactable.
 			$Interactable.add_interactable(target_tile, id)
 			$Interactable.trigger_bomb(target_tile)
 		&"potion":
