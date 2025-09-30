@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ft4p3e207tyt"]
+[gd_scene load_steps=22 format=3 uid="uid://ft4p3e207tyt"]
 
 [ext_resource type="StyleBox" uid="uid://dq5lxbipyxcyu" path="res://Assets/background.tres" id="1_pt1ru"]
 [ext_resource type="PackedScene" uid="uid://dd30axi4gohbt" path="res://World/world.tscn" id="1_rh14k"]
@@ -6,10 +6,29 @@
 [ext_resource type="Texture2D" uid="uid://dtjpdpas216yq" path="res://Assets/sprites.png" id="3_pt1ru"]
 [ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://Assets/JetBrains.ttf" id="4_0noqu"]
 [ext_resource type="PackedScene" uid="uid://myg80b6k1npu" path="res://World/tooltip.tscn" id="4_jllm8"]
+[ext_resource type="Script" uid="uid://ce7v3jykrukdw" path="res://HUD/end_screen.gd" id="5_8q743"]
 [ext_resource type="Script" uid="uid://di3g6iy465jjn" path="res://HUD/energy_bar.gd" id="6_0noqu"]
+[ext_resource type="Shader" uid="uid://c05r1pi3j8dpm" path="res://HUD/fill.gdshader" id="7_5if7l"]
 [ext_resource type="Script" uid="uid://bhqhjfhmlmut3" path="res://HUD/arrow.gd" id="7_pxv5b"]
+[ext_resource type="AudioStream" uid="uid://b4fa4fqc20u3s" path="res://Assets/Sounds/transition.wav" id="8_ckxo8"]
 [ext_resource type="Script" uid="uid://d0lgfd0wmmnna" path="res://HUD/item_tooltips.gd" id="9_5ofep"]
 [ext_resource type="PackedScene" uid="uid://bydlvdo8wwmn" path="res://Menus/transition.tscn" id="10_s7atv"]
+[ext_resource type="AudioStream" uid="uid://dkbouf2ixhxe4" path="res://Assets/Sounds/bomb.wav" id="10_yhwer"]
+[ext_resource type="AudioStream" uid="uid://cda7xlv3awjb6" path="res://Assets/Sounds/pickup.wav" id="11_sj3ig"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_s7atv"]
+font = ExtResource("4_0noqu")
+font_size = 32
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sj3ig"]
+resource_local_to_scene = true
+shader = ExtResource("7_5if7l")
+shader_parameter/fill_col = Color(0.22, 0.22, 0.22, 1)
+shader_parameter/enabled = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s7atv"]
+atlas = ExtResource("3_pt1ru")
+region = Rect2(16, 32, 8, 8)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
 atlas = ExtResource("3_pt1ru")
@@ -69,6 +88,71 @@ render_target_update_mode = 4
 [node name="Tooltip" parent="VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport/Node2D" instance=ExtResource("4_jllm8")]
 
 [node name="World" parent="VBoxContainer/HBoxContainer/PanelContainer/SubViewportContainer/SubViewport/Node2D" instance=ExtResource("1_rh14k")]
+unique_name_in_owner = true
+
+[node name="EndScreen" type="MarginContainer" parent="VBoxContainer/HBoxContainer/PanelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+script = ExtResource("5_8q743")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="BaseStat" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseStat"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Damage Taken"
+label_settings = SubResource("LabelSettings_s7atv")
+
+[node name="Value" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseStat"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_s7atv")
+
+[node name="Stats" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="BaseChallenge" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Name" type="Label" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseChallenge"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "No Damage"
+label_settings = SubResource("LabelSettings_s7atv")
+
+[node name="Texture" type="TextureRect" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer/BaseChallenge"]
+material = SubResource("ShaderMaterial_sj3ig")
+layout_mode = 2
+texture = SubResource("AtlasTexture_s7atv")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Challenges" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Reveal" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
+stream = ExtResource("8_ckxo8")
+
+[node name="Failed" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
+stream = ExtResource("10_yhwer")
+
+[node name="Success" type="AudioStreamPlayer" parent="VBoxContainer/HBoxContainer/PanelContainer/EndScreen"]
+stream = ExtResource("11_sj3ig")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -193,6 +277,7 @@ bbcode_enabled = true
 script = ExtResource("9_5ofep")
 
 [node name="Transition" parent="." instance=ExtResource("10_s7atv")]
+visible = false
 layout_mode = 1
 grow_horizontal = 1
 grow_vertical = 1

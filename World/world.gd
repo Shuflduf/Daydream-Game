@@ -3,8 +3,19 @@ extends Node2D
 @onready var player: Node2D = $Player
 @onready var enemies_parent: Node2D = $Enemies
 @onready var finish_line: Line2D = $FinishLine
+@onready var ui: Control = get_tree().get_first_node_in_group(&"UI")
+
 
 var finish_pos: int
+var enabled = false
+
+var finish_data = {
+	"damage_taken": 0,
+	"tiles_walked": 0,
+	"rock_eaten": 0,
+	"enemies_left": 0,
+	"coins_collected": 0,
+}
 
 func cycle():
 	$Interactable.cycle()
@@ -16,6 +27,8 @@ func _ready() -> void:
 	EnemyUtils.bomb_enemy_exploded.connect(detonate_bomb)
 	EnemyUtils.interactable_added.connect($Interactable.add_interactable)
 	for enemy in enemies_parent.get_children():
+		finish_data["enemies_left"] += 1
+		enemy.health.die.connect(func(): finish_data["enemies_left"] -= 1)
 		enemy.map_tiles_requested.connect(func(): enemy.map_tiles = get_collision_tiles())
 	finish_pos = $Walls.get_rightmost() + 4
 	finish_line.position.x = finish_pos * 8.0
@@ -44,6 +57,9 @@ func generate_rock(offset: Vector2i, diameter: float):
 
 
 func _on_player_moved(new_tile_pos: Vector2i) -> void:
+	if not enabled:
+		return
+	ui.arrow.change_direction(atan2(player.last_move.x, -player.last_move.y))
 	var enemies = EnemyUtils.get_enemy_tiles()
 	if new_tile_pos.y < 0 or new_tile_pos.y >= 8:
 		player.fake_move()
@@ -52,6 +68,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		#$Walls.tiles.erase(new_tile_pos)
 		player.health.shift(-1)
 		player.fake_move()
+		finish_data["rock_eaten"] += 1
 		$Eat.play()
 		$Walls.remove_at(new_tile_pos)
 		#$Walls.tiles = $Walls.tiles.filter(func(t): return t != new_tile_pos)
@@ -65,8 +82,10 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 		enemies[new_tile_pos].fake_move()
 		player.fake_move()
 		player.health.shift(-1)
+		finish_data["damage_taken"] += 1
 		$Attack.play()
 	else:
+		finish_data["tiles_walked"] += 1
 		player.actually_move()
 		$Camera.update_focus(new_tile_pos.x)
 		if new_tile_pos.x >= finish_pos:
@@ -75,7 +94,12 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 
 
 func level_end_sequence():
-	print("AAAAAAAAAAa")
+	print(finish_data)
+	enabled = false
+	$Camera.update_focus(finish_pos+5)
+	ui.endscreen.raw_stats = finish_data
+	await ui.endscreen.update_stats()
+	ui.endscreen.show_challenges()
 
 func get_collision_tiles() -> Array[Vector2i]:
 	var all: Array[Vector2i] = []
@@ -101,6 +125,7 @@ func detonate_bomb(pos: Vector2i):
 			$Walls.remove_at(target_pos)
 			if player.tile_pos == target_pos:
 				player.health.shift(-4)
+				finish_data["rock_eaten"] += 4
 			elif enemies.has(target_pos):
 				enemies[target_pos].health.shift(-4)
 	$Walls.place_tiles()
@@ -123,6 +148,7 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 					$Walls.remove_at(target_tile)
 					target_tile += face_dir
 					walls_broken += 1
+					finish_data["rock_eaten"] += 1
 				#$Walls.remove_at(target_tile)
 				$Walls.place_tiles()
 			else:
@@ -137,3 +163,7 @@ func _on_player_item_used(face_dir: Vector2i, id: StringName) -> void:
 		&"potion":
 			player.heal()
 			player.health.shift(4)
+
+
+func _on_interactable_coin_collected() -> void:
+	finish_data["coins_collected"] += 1

@@ -41,7 +41,7 @@ position_smoothing_speed = 20.0
 script = ExtResource("2_aqk2v")
 
 [node name="Player" parent="." instance=ExtResource("1_f3sb7")]
-position = Vector2(0, 24)
+position = Vector2(240, 24)
 
 [node name="Walls" parent="." instance=ExtResource("2_fj7yv")]
 
@@ -87,6 +87,7 @@ width = 1.0
 
 [connection signal="item_used" from="Player" to="." method="_on_player_item_used"]
 [connection signal="moved" from="Player" to="." method="_on_player_moved"]
+[connection signal="coin_collected" from="Interactable" to="." method="_on_interactable_coin_collected"]
 [connection signal="explode_bomb" from="Interactable" to="." method="_on_interactable_explode_bomb"]
 
 [editable path="Walls"]

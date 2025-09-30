@@ -5,9 +5,13 @@ extends Control
 @onready var arrow: PanelContainer = %Arrow
 @onready var item_tooltips: Node = $ItemTooltips
 @onready var transition: ColorRect = $Transition
+@onready var world: Node2D = %World
+@onready var endscreen: MarginContainer = %EndScreen
 
 func _ready() -> void:
+	transition.show()
 	transition.open()
+	transition.opened.connect(func(): world.enabled = true)
 
 func set_item(first: bool, id: StringName):
 	$ItemTooltips.set_item(first, id)

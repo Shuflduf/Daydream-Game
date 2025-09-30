@@ -27,7 +27,7 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	for dir in DIRS:
 		if event.is_action_pressed(dir):
 			last_move = DIRS[dir]
-			ui.arrow.change_direction(atan2(last_move.x, -last_move.y))
+			
 			moved.emit(tile_pos + DIRS[dir])
 
 			#tile_pos += DIRS[dir]

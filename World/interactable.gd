@@ -2,6 +2,7 @@ class_name Interactables
 extends TileMapLayer
 
 signal explode_bomb(pos: Vector2i)
+signal coin_collected
 
 const LABEL_OFFSET = Vector2(1.0, 0.0)
 const ATLAS = {
@@ -87,6 +88,7 @@ func interact(pos: Vector2i):
 			erase_cell(pos)
 			tiles.erase(pos)
 			$Pickup.play()
+			coin_collected.emit()
 	print(tile_id)
 
 
