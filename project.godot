@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 EnemyUtils="*res://Enemies/enemy_utils.gd"
 LevelHandler="*res://Levels/level_handler.gd"
+GlobalMusic="*res://Menus/global_music.gd"
 
 [display]
 

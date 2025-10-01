@@ -96,6 +96,7 @@ func _on_player_moved(new_tile_pos: Vector2i) -> void:
 
 
 func level_end_sequence():
+	GlobalMusic.set_pitch(1.05)
 	print(finish_data)
 	enabled = false
 	$Camera.update_focus(finish_pos+5)

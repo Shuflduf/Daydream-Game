@@ -11,14 +11,17 @@ extends Control
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed(&"next") and LevelHandler.has_next_unlocked():
 		LevelHandler.current_level += 1
+		GlobalMusic.set_pitch(0.0)
 		$Action.play()
 		await $Action.finished
 		get_tree().change_scene_to_file(scene_file_path)
 	elif event.is_action_pressed(&"restart"):
+		GlobalMusic.set_pitch(0.0)
 		$Action.play()
 		await $Action.finished
 		get_tree().change_scene_to_file(scene_file_path)
 	elif event.is_action_pressed(&"levels"):
+		GlobalMusic.set_pitch(0.0)
 		$Action.play()
 		await $Action.finished
 		get_tree().change_scene_to_file("res://Menus/levels_list.tscn")
@@ -27,7 +30,12 @@ func _ready() -> void:
 	transition.show()
 	await get_tree().create_timer(0.2).timeout
 	transition.open()
-	transition.opened.connect(func(): world.enabled = true)
+	transition.opened.connect(func():
+		world.enabled = true
+		GlobalMusic.pitch_scale = 0.1
+		GlobalMusic.set_pitch(1.0)
+		GlobalMusic.play()
+	)
 
 func set_item(first: bool, id: StringName):
 	$ItemTooltips.set_item(first, id)
