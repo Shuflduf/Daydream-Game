@@ -11,6 +11,14 @@ func _input(event: InputEvent) -> void:
 					$Failed.play()
 
 func _ready() -> void:
+	var beat_last_level = LevelHandler.levels_index.levels[-1].unlocked
+	var all_trophies = LevelHandler.levels_index.levels.all(func(l: LevelInfo): return l.trophies_unlocked >= 3)
+	
+	if all_trophies:
+		%AllTrophies.show()
+	elif beat_last_level:
+		%GetAllTrophies.show()
+
 	for i in LevelHandler.levels_index.levels.size():
 		var level_info: LevelInfo = LevelHandler.levels_index.levels[i]
 		#level_info.trophies_unlocked = 3

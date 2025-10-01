@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cvuewo83vtehr"]
+[gd_scene load_steps=9 format=3 uid="uid://cvuewo83vtehr"]
 
 [ext_resource type="Script" uid="uid://d3b4mdnann22f" path="res://Menus/levels_list.gd" id="1_6luqe"]
-[ext_resource type="PackedScene" uid="uid://bvokm65j5lie3" path="res://Menus/level_list_base.tscn" id="2_un1bu"]
+[ext_resource type="FontFile" uid="uid://buwtlt7xugo8b" path="res://Assets/JetBrains.ttf" id="2_un1bu"]
 [ext_resource type="AudioStream" uid="uid://cda7xlv3awjb6" path="res://Assets/Sounds/pickup.wav" id="3_un1bu"]
+[ext_resource type="PackedScene" uid="uid://bvokm65j5lie3" path="res://Menus/level_list_base.tscn" id="3_ywdga"]
 [ext_resource type="AudioStream" uid="uid://dkbouf2ixhxe4" path="res://Assets/Sounds/bomb.wav" id="4_s0h3q"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i576r"]
@@ -15,6 +16,10 @@ border_width_top = 10
 border_width_right = 10
 border_width_bottom = 10
 border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_ykmn4"]
+font = ExtResource("2_un1bu")
+font_size = 24
 
 [node name="LevelsList" type="Control"]
 layout_mode = 3
@@ -57,15 +62,52 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="LevelsContainer" type="HFlowContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GetAllTrophies" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GetAllTrophies"]
+layout_mode = 2
+text = "Try getting all the trophies :)"
+label_settings = SubResource("LabelSettings_ykmn4")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/GetAllTrophies"]
+layout_mode = 2
+text = "Or, you can't do that?"
+label_settings = SubResource("LabelSettings_ykmn4")
+horizontal_alignment = 1
+
+[node name="AllTrophies" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/AllTrophies"]
+layout_mode = 2
+text = "Congratulations!"
+label_settings = SubResource("LabelSettings_ykmn4")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/AllTrophies"]
+layout_mode = 2
+text = "Enjoy this frog: 🐸"
+label_settings = SubResource("LabelSettings_ykmn4")
+horizontal_alignment = 1
+
+[node name="LevelsContainer" type="HFlowContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_vertical = 4
+size_flags_vertical = 6
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 20
 alignment = 1
 
-[node name="LevelBase" parent="MarginContainer/PanelContainer/MarginContainer/LevelsContainer" instance=ExtResource("2_un1bu")]
+[node name="LevelBase" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/LevelsContainer" instance=ExtResource("3_ywdga")]
 unique_name_in_owner = true
 layout_mode = 2
 
