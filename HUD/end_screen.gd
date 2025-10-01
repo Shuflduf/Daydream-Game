@@ -35,9 +35,14 @@ func show_challenges():
 	await add_challenge("No Damage", passed_damage)
 	await add_challenge("All Coins", passed_coins)
 	await add_challenge("No Mercy", passed_kill)
+	
+	
 func activate_binds():
 	await get_tree().create_timer(0.5).timeout
 	binds.show()
+	if LevelHandler.current_level == LevelHandler.levels_index.levels.size() - 1:
+		binds.get_child(1).modulate = Color("3a3277")
+		binds.get_child(2).modulate = Color.GOLD
 	$Reveal.play()
 
 func add_challenge(challenge_name: String, passed: bool):
