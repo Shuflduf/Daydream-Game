@@ -17,7 +17,6 @@ metadata/_custom_type_script = "uid://0pv66qoprm85"
 [sub_resource type="Resource" id="Resource_unsoe"]
 script = ExtResource("1_5nmrr")
 name = "level3"
-unlocked = true
 metadata/_custom_type_script = "uid://0pv66qoprm85"
 
 [sub_resource type="Resource" id="Resource_mjklf"]

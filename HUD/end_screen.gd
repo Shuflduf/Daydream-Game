@@ -31,6 +31,7 @@ func show_challenges():
 	var current_level_info = LevelHandler.get_current_level_info()
 	if trophy_count > current_level_info.trophies_unlocked:
 		current_level_info.trophies_unlocked = trophy_count
+		LevelHandler.save_progress()
 	await add_challenge("No Damage", passed_damage)
 	await add_challenge("All Coins", passed_coins)
 	await add_challenge("No Mercy", passed_kill)
