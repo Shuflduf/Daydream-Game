@@ -23,7 +23,7 @@ font_size = 32
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sj3ig"]
 resource_local_to_scene = true
 shader = ExtResource("7_5if7l")
-shader_parameter/fill_col = Color(0.22, 0.22, 0.22, 1)
+shader_parameter/fill_col = Color(0.22745098, 0.19607843, 0.46666667, 1)
 shader_parameter/enabled = false
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s7atv"]
