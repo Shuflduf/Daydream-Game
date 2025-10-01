@@ -98,3 +98,9 @@ func heal():
 func _on_health_changed(new_health: int) -> void:
 	ui.energy.current_energy = new_health
 	ui.energy.update_bars()
+
+
+func _on_health_die() -> void:
+	var tween = get_tree().create_tween()
+	tween.tween_property($Sprite, ^"modulate", Color.BLACK, 1.0)
+	#tween.parallel().tween_property($Sprite, ^"scale", Vector2.ZERO, 1.0)

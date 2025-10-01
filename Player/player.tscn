@@ -33,3 +33,4 @@ volume_db = -20.0
 stream = ExtResource("6_fhl08")
 
 [connection signal="changed" from="Health" to="." method="_on_health_changed"]
+[connection signal="die" from="Health" to="." method="_on_health_die"]

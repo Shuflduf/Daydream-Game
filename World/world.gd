@@ -1,5 +1,7 @@
 extends Node2D
 
+signal restarted
+
 @onready var player: Node2D = $Player
 @onready var enemies_parent: Node2D = $Enemies
 @onready var finish_line: Line2D = $FinishLine
@@ -18,16 +20,23 @@ var finish_data = {
 }
 
 func cycle():
+	if get_tree() == null:
+		return
 	$Interactable.cycle()
 	for enemy in get_tree().get_nodes_in_group(&"Enemy"):
 		enemy.cycle()
 
 
 func _ready() -> void:
+	player.health.die.connect(func():
+		enabled = false
+		GlobalMusic.set_pitch(0.8)
+		await get_tree().create_timer(2.0).timeout
+		restarted.emit()
+	)
 	EnemyUtils.bomb_enemy_exploded.connect(detonate_bomb)
 	EnemyUtils.interactable_added.connect($Interactable.add_interactable)
 	for enemy in enemies_parent.get_children():
-		print(enemy)
 		finish_data["enemies_left"] += 1
 		enemy.health.die.connect(func(): finish_data["enemies_left"] -= 1)
 		enemy.map_tiles_requested.connect(func(): enemy.map_tiles = get_collision_tiles())

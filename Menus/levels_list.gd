@@ -5,7 +5,10 @@ func _input(event: InputEvent) -> void:
 		if event.keycode >= KEY_0 and event.keycode <= KEY_9:
 			var index = event.keycode - KEY_0 - 1
 			if index < LevelHandler.levels_index.levels.size():
-				switch_to_level(index)
+				if LevelHandler.levels_index.levels[index].unlocked:
+					switch_to_level(index)
+				else:
+					$Failed.play()
 
 func _ready() -> void:
 	for i in LevelHandler.levels_index.levels.size():

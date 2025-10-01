@@ -62,3 +62,10 @@ func set_tooltip(data: Dictionary[String, String]):
 
 func _on_area_2d_mouse_entered() -> void:
 	print("A")
+
+
+func _on_world_restarted() -> void:
+	GlobalMusic.set_pitch(0.0)
+	$Action.play()
+	await $Action.finished
+	get_tree().change_scene_to_file(scene_file_path)
